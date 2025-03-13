@@ -48,43 +48,45 @@ If you are a C# developer, you can get the source code from this link[AtopSerial
 - Graph panel: Custom Lua scripts for rich embedded debugging and snatch graph  function.
 
 ## Curve Interface Operation Instructions
-Left mouse button + drag: Pan the curve along the X/Y axis.
+- Left mouse button + drag: Pan the curve along the X/Y axis.
 
-Ctrl + left mouse button + drag: Pan the curve along the X axis.
+- Ctrl + left mouse button + drag: Pan the curve along the X axis.
 
-Shift + left mouse button + drag: Pan the curve along the Y axis.
+- Shift + left mouse button + drag: Pan the curve along the Y axis.
 
-Right mouse button + drag: Zoom the curve along the X/Y axis.
+- Right mouse button + drag: Zoom the curve along the X/Y axis.
 
-Ctrl + right mouse button + drag: Zoom the curve along the X axis.
+- Ctrl + right mouse button + drag: Zoom the curve along the X axis.
 
-Shift + right mouse button + drag: Zoom the curve along the Y axis.
+- Shift + right mouse button + drag: Zoom the curve along the Y axis.
 
-Mouse wheel scroll: Zoom the curve proportionally along the X/Y axis.
+- Mouse wheel scroll: Zoom the curve proportionally along the X/Y axis.
 
-Mouse wheel button + drag: Zoom into the selected area.
+- Mouse wheel button + drag: Zoom into the selected area.
 
-Mouse wheel click: Auto-fit the curve view.
+- Mouse wheel click: Auto-fit the curve view.
 
-Right mouse button click: Open the curve menu.
+- Right mouse button click: Open the curve menu.
 
-Left mouse button double-click: Show/hide the refresh rate.
+- Left mouse button double-click: Show/hide the refresh rate.
 
 ## Curve Menu Functions
-Copy Image: Copy the curve image to the clipboard.
+- Copy Image: Copy the curve image to the clipboard.
 
-Save Image: Save the curve image as a PNG file.
+- Save Image: Save the curve image as a PNG file.
 
-Export Data: Export the collected data as a CSV file.
+- Export Data: Export the collected data as a CSV file.
 
-Clear Curve: Clear the currently displayed curve.
-
-Fit View: Auto-fit the curve view (same effect as clicking the mouse wheel).
-
-Generate Demo: Generate three sine curves for software demonstration purposes.
-
-Switch Theme: Change the display style of the screenshot interface, including grid style, font, background color, etc.
+- Import data:Import CSV file data into the curve.
 `You can import curves by dragging the CSV file into the window.`
+
+- Clear Curve: Clear the currently displayed curve.
+
+- Fit View: Auto-fit the curve view (same effect as clicking the mouse wheel).
+
+- Generate Demo: Generate three sine curves for software demonstration purposes.
+
+- Switch Theme: Change the display style of the screenshot interface, including grid style, font, background color, etc.
 ## Letter of Thanks
 I am engaged in firmware development in the power supply industry and have no knowledge of C# development. Relying on five years of experience as a "copy-and-paste tailor," I spent dozens of days and nights modifying the LLCOM open-source project by ChenXuuu. Special thanks to the following open-source projects for their assistance:
 - [LLCOM](https://github.com/chenxuuu/llcom)
