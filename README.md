@@ -6,7 +6,7 @@ This is a truly universal protocol parsing serial port tool, a highly flexible a
 ## Download
 The project has been open sourced since [V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0), You can get the latest release binary from this link [V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0)
 
-If you are a C# developer, you can get the source code from this link[AtopSerial Source](https://codeload.github.com/mt6595/AtopSerial/zip/refs/heads/master)
+If you are a C# developer, you can get the source code from this link[AtopSerial Source](https://codeload.github.com/mt6595/AtopSerial/zip/refs/heads/main)
 
 ## Features & Functions
 - Supports both Chinese and English languages.
