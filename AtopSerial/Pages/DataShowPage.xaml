@@ -1,0 +1,111 @@
+<Page
+    x:Class="AtopSerial.Pages.DataShowPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.fontawesome.io/icons/"
+    xmlns:local="clr-namespace:AtopSerial.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="DataShowPage"
+    Loaded="Page_Loaded"
+    d:DesignWidth="800"
+    d:DesignHeight="650" 
+    mc:Ignorable="d" >
+    <Page.Resources>
+        <local:boolVisibeConverter x:Key="boolVisibeConverter" />
+        <local:boolNotVisibeConverter x:Key="boolNotVisibeConverter" />
+        <local:showHexFormat x:Key="showHexFormatConverter" />
+    </Page.Resources>
+    <Grid x:Name="mainGrid" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <FlowDocumentScrollViewer
+            IsToolBarVisible="False"
+            Style="{x:Null}"
+            Name="uartDataFlowDocument"
+            MinZoom="50"
+            Margin="0,0,4,0"
+            MouseLeave="uartDataFlowDocument_MouseLeave"
+            VerticalScrollBarVisibility="Visible">
+            <!--  更改段落间距  -->
+            <FlowDocumentScrollViewer.Resources>
+                <Style TargetType="{x:Type Paragraph}">
+                    <Setter Property="Margin" Value="0" />
+                </Style>
+            </FlowDocumentScrollViewer.Resources>
+            <!--  更改段落间距END  -->
+            <FlowDocument
+                FontFamily="Consolas,Microsoft YaHei,微软雅黑"
+                FontSize="12"
+                IsOptimalParagraphEnabled="False"
+                TextAlignment="Left" />
+        </FlowDocumentScrollViewer>
+        <StackPanel
+            Grid.Row="1"
+            Margin="10,0,30,3"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal"
+            Visibility="{Binding Path=IsMouseOver, ElementName=mainGrid, Converter={StaticResource boolVisibeConverter}}">
+            <CheckBox
+                Name="HEXBox"
+                Margin="0,0,0,0"
+                Content="{DynamicResource ShowHexFormat}"
+                IsChecked="{Binding showHexFormat, Converter={StaticResource showHexFormatConverter}}"
+                IsThreeState="True"
+                ToolTip="{DynamicResource ShowHexFormatTip}" />
+            <CheckBox
+                Name="ShowSendCheckBox"
+                Margin="10,0,0,0"
+                Content="{DynamicResource ShowSendMode}"
+                IsChecked="{Binding showSend}" />
+            <CheckBox
+                Name="HexSendCheckBox"
+                Margin="10,0,0,0"
+                Content="{DynamicResource HexSendMode}"
+                IsChecked="{Binding hexSend}" />
+            <CheckBox
+                Name="SubpackageShowCheckBox"
+                Margin="10,0,0,0"
+                Content="{DynamicResource SubpackageShow}"
+                IsChecked="{Binding subpackageShow}" />
+            <CheckBox
+                Name="DisableLogCheckBox"
+                Margin="10,0,0,0"
+                Content="{DynamicResource DisableLog}"
+                IsChecked="{Binding DisableLog}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,0,4,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            Orientation="Horizontal"
+            Visibility="{Binding Path=IsMouseOver, ElementName=mainGrid, Converter={StaticResource boolVisibeConverter}}">
+            <Button
+                Name="LockLogButton"
+                VerticalAlignment="Bottom"
+                Click="LockLogButton_Click"
+                Width="25" 
+                Height="22"
+                Padding="0,3,0,3"
+                ToolTip="{DynamicResource LockLogButton}"
+                Visibility="{Binding Path=IsMouseOver, ElementName=mainGrid, Converter={StaticResource boolVisibeConverter}}">
+                <StackPanel>
+                    <fa:FontAwesome
+                    Name="LockIcon"
+                    Icon="Lock"
+                    Visibility="{Binding LockLog, Converter={StaticResource boolNotVisibeConverter}}" />
+                    <fa:FontAwesome
+                    Name="UnLockIcon"
+                    Foreground="Green"
+                    Icon="Unlock"
+                    Visibility="{Binding LockLog, Converter={StaticResource boolVisibeConverter}}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
