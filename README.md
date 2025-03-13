@@ -87,6 +87,20 @@ If you are a C# developer, you can get the source code from this link[AtopSerial
 - Generate Demo: Generate three sine curves for software demonstration purposes.
 
 - Switch Theme: Change the display style of the screenshot interface, including grid style, font, background color, etc.
+
+## Interface
+![Picture](image/picture1.png)
+
+![Picture](image/picture2.png)
+
+![Picture](image/picture3.png)
+
+![Picture](image/picture4.png)
+
+![Picture](image/picture5.png)
+
+![Picture](image/picture6.png)
+
 ## Letter of Thanks
 I am engaged in firmware development in the power supply industry and have no knowledge of C# development. Relying on five years of experience as a "copy-and-paste tailor," I spent dozens of days and nights modifying the LLCOM open-source project by ChenXuuu. Special thanks to the following open-source projects for their assistance:
 - [LLCOM](https://github.com/chenxuuu/llcom)
