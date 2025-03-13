@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C7167F0D-BC9F-4E6E-AFE1-012C56B48DB5}") = "WapProj", "WapProj\WapProj.wapproj", "{53865299-7486-46A1-B3C4-66293D16AF79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtopSerial", "AtopSerial\AtopSerial.csproj", "{9365FB7C-D213-49EE-A668-1A5834AAAD06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Debug|x64.ActiveCfg = Debug|x64
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Debug|x64.Build.0 = Debug|x64
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Debug|x64.Deploy.0 = Debug|x64
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Debug|x86.ActiveCfg = Debug|x86
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Debug|x86.Build.0 = Debug|x86
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Debug|x86.Deploy.0 = Debug|x86
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Release|x64.ActiveCfg = Release|x64
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Release|x64.Build.0 = Release|x64
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Release|x64.Deploy.0 = Release|x64
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Release|x86.ActiveCfg = Release|x86
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Release|x86.Build.0 = Release|x86
+		{53865299-7486-46A1-B3C4-66293D16AF79}.Release|x86.Deploy.0 = Release|x86
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Debug|x64.ActiveCfg = Debug|x64
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Debug|x64.Build.0 = Debug|x64
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Debug|x86.ActiveCfg = Debug|x86
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Debug|x86.Build.0 = Debug|x86
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Release|x64.ActiveCfg = Release|x64
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Release|x64.Build.0 = Release|x64
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Release|x86.ActiveCfg = Release|x86
+		{9365FB7C-D213-49EE-A668-1A5834AAAD06}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D9C46282-6065-484D-9691-B7279A3DA57F}
+	EndGlobalSection
+EndGlobal
