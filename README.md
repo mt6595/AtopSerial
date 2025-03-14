@@ -122,6 +122,7 @@ I am engaged in firmware development in the power supply industry and have no kn
 
 ## Supports
 - 🛠️[GitHub Issue](https://github.com/mt6595/AtopSerial/issues)
+- 🛠️[GitCode Issue](https://gitcode.com/mt6595/AtopSerial/issues)
 - 📫Email `1012560534@qq.com`
 
 ## License
