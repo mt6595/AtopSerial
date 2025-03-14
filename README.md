@@ -1,3 +1,6 @@
+
+![Picture](image/AtopSerial2.png)
+
 # AtopSerial [![Apache](https://img.shields.io/static/v1.svg?label=license&message=Apache+2&color=blue)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE) [![Windows](https://img.shields.io/badge/Windows-passing-brightgreen)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE)
 ***
 
@@ -101,6 +104,11 @@ If you are a C# developer, you can get the source code from this link[AtopSerial
 
 ![Picture](image/picture6.png)
 
+## Lua Script Document
+📔 Lua 5.3 Reference Manual [Click Here](https://www.lua.org/manual/5.3/)
+📖 Lua AtopSerial Tool API manual [Click Here](https://github.com/mt6595/AtopSerial/blob/main/LuaApi.md)
+📚 If you are a C# developer, you need to know about Lua support in C# [Click Here](https://github.com/Tencent/xLua)
+
 ## Letter of Thanks
 I am engaged in firmware development in the power supply industry and have no knowledge of C# development. Relying on five years of experience as a "copy-and-paste tailor," I spent dozens of days and nights modifying the LLCOM open-source project by ChenXuuu. Special thanks to the following open-source projects for their assistance:
 - [LLCOM](https://github.com/chenxuuu/llcom)
@@ -111,8 +119,8 @@ I am engaged in firmware development in the power supply industry and have no kn
 - [Costura.Fody](https://github.com/Fody/Costura)
 
 ## Supports
-- [GitHub Issue](https://github.com/mt6595/AtopSerial/issues)
-- Email `1012560534@qq.com`
+- 🛠️[GitHub Issue](https://github.com/mt6595/AtopSerial/issues)
+- 📫Email `1012560534@qq.com`
 
 ## License
 AtopSerial is licensed under [Apache 2](https://github.com/mt6595/AtopSerial/blob/main/LICENSE). If you use or borrow any part of this project, please retain a link pointing to the original project.Let me know if you need further assistance!
