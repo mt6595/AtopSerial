@@ -1,5 +1,2 @@
 GitHub反馈：
-https://github.com/chenxuuu/AtopSerial/issues/new/choose
-
-如果打不开上面的网址，可以去开源中国Git反馈：
-https://gitee.com/chenxuuu/AtopSerial/issues/new
+https://github.com/mt6595/AtopSerial/issues
