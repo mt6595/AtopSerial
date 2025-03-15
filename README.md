@@ -4,6 +4,7 @@
 # AtopSerial [![Apache](https://img.shields.io/static/v1.svg?label=license&message=Apache+2&color=blue)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE) [![Windows](https://img.shields.io/badge/Windows-passing-brightgreen)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE)
 ***
 
+[中文简介](https://github.com/mt6595/AtopSerial/blob/main/README_ZH.md)
 This is a truly universal protocol parsing serial port tool, a highly flexible automation control and testing tool based on Lua scripting, and an all-encompassing virtual oscilloscope tool for the embedded industry. It supports both Chinese and English language switching, is ad-free, has no internal links, and is completely free of charge.
 
 ## Download
