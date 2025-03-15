@@ -1,7 +1,7 @@
 
 ![Picture](image/AtopSerial2.png)
 
-# AtopSerial [![Apache](https://img.shields.io/static/v1.svg?label=license&message=Apache+2&color=blue)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE) [![Windows](https://img.shields.io/badge/Windows-passing-brightgreen)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE)a65e4498eff14e5fafd108f9925299c6.png#pic_left)
+# AtopSerial [![Apache](https://img.shields.io/static/v1.svg?label=license&message=Apache+2&color=blue)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE) [![Windows](https://img.shields.io/badge/Windows-passing-brightgreen)](https://github.com/mt6595/AtopSerial/blob/main/LICENSE)
 ***
 
 [English Description](https://github.com/mt6595/AtopSerial/blob/main/README.md)
