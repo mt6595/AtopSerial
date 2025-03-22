@@ -72,8 +72,6 @@ If you are a C# developer, you can get the source code from this link[AtopSerial
 
 - Right mouse button click: Open the curve menu.
 
-- Left mouse button double-click: Show/hide the refresh rate.
-
 ## Curve Menu Functions
 - Copy Image: Copy the curve image to the clipboard.
 
@@ -120,6 +118,8 @@ I am engaged in firmware development in the power supply industry and have no kn
 - [HandyControl](https://github.com/HandyOrg/HandyControl)
 - [xLua](https://github.com/Tencent/xLua)
 - [Costura.Fody](https://github.com/Fody/Costura)
+- [Fontawesome](https://fontawesome.com/)
+- [iconfont](https://www.iconfont.cn/)
 
 ## Supports
 - 🛠️[GitHub Issue](https://github.com/mt6595/AtopSerial/issues)

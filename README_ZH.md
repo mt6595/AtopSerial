@@ -71,8 +71,6 @@
 
 - 鼠标右键单击：打开曲线菜单。
 
-- 鼠标左键双击：显示/隐藏刷新率。
-
 ## 曲线菜单功能
 - 复制图像：将曲线图像复制到剪贴板。
 
@@ -119,6 +117,10 @@
 - [HandyControl](https://github.com/HandyOrg/HandyControl)
 - [xLua](https://github.com/Tencent/xLua)
 - [Costura.Fody](https://github.com/Fody/Costura)
+- [Fontawesome](https://fontawesome.com/)
+- [iconfont](https://www.iconfont.cn/)
+
+
 
 ## 支持
 - 🛠️[GitHub Issue](https://github.com/mt6595/AtopSerial/issues)
