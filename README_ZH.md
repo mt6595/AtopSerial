@@ -8,7 +8,7 @@
 这是一个真正的万能协议解析串口工具，一个基于Lua脚本的高度灵活的自动化控制和测试工具，以及一个用于嵌入式行业的全功能虚拟示波器工具，项目在GitHub和GitCode开源。它支持中英文双语切换，无广告，无内链，无收费。
 
 ## 下载
-该项目从[V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0)开始开源，您可以从这个链接[V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0)获得最新的发布二进制文件。
+该项目从[V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0)开始开源，您可以从这个链接[V2.3.0.1](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.1)获得最新的发布二进制文件。
 
 如果您是c#开发人员，您可以从这个链接[AtopSerial Source](https://codeload.github.com/mt6595/AtopSerial/zip/refs/heads/main)获得源代码。
 ## 功能&特点
