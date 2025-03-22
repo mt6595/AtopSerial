@@ -384,7 +384,7 @@
                                 Padding="8,0,8,0"
                                 Click="DeleteScriptButton_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                                <fa:FontAwesome Foreground="DarkCyan" Icon="trash" />
+                                <fa:FontAwesome Foreground="DarkCyan" Icon="trash" FontSize="14"/>
                             </Button>
                         </WrapPanel>
                         <WrapPanel
@@ -454,7 +454,7 @@
                             </Grid.ColumnDefinitions>
                             <Button
                                 Name="stopLuaButton"
-                                Margin="0,3,3,3"
+                                Margin="5,0,3,0"
                                 Click="StopLuaButton_Click"
                                 Foreground="DarkRed"
                                 ToolTip="{DynamicResource LuaStop}">
@@ -463,7 +463,7 @@
                             <Button
                                 Name="reRunLuaButton"
                                 Grid.Column="1"
-                                Margin="0,3,3,3"
+                                Margin="0,0,3,0"
                                 Click="reRunLuaButton_Click"
                                 Foreground="ForestGreen"
                                 ToolTip="{DynamicResource LuaOverload}">
@@ -472,12 +472,13 @@
                             <Button
                                 Name="clearLuaPrintButton"
                                 Grid.Column="2"
-                                Margin="0,3,3,3"
+                                Margin="0,0,3,0"
                                 Click="ClearLuaPrintButton_Click"
-                                Foreground="Peru"
-                                ToolTip="{DynamicResource LuaClear}">
-                                <fa:FontAwesome Name="clearLuaPrintIcon" Icon="PaintBrush" />
-                            </Button>
+                                ToolTip="{DynamicResource LuaClear}"
+                                FontFamily="{StaticResource IconFont}" 
+                                Content="&#xe693;" 
+                                Foreground="Peru" 
+                                FontSize="14"/>
                             <TextBox
                                 Name="runOneLineLuaTextBox"
                                 Grid.Column="3"
@@ -486,12 +487,13 @@
                             <Button
                                 Name="sendLuaScriptButton"
                                 Grid.Column="4"
-                                Margin="3,3,0,3"
+                                Margin="3,3,3,3"
                                 Click="SendLuaScriptButton_Click"
-                                Foreground="DeepSkyBlue"
-                                ToolTip="{DynamicResource LuaSendScript}">
-                                <fa:FontAwesome Icon="ArrowUp" />
-                            </Button>
+                                ToolTip="{DynamicResource LuaSendScript}"
+                                FontFamily="{StaticResource IconFont}" 
+                                Content="&#xe630;" 
+                                Foreground="DeepSkyBlue" 
+                                FontSize="15"/>
                         </Grid>
                     </Grid>
                     <!--  脚本运行日志界面END  -->
@@ -729,12 +731,14 @@
                             <StatusBarItem Grid.Column="1"  Padding="0">
                                 <Button
                                     Margin="5,0,0,0"
-                                    Padding="8,0,8,0"
+                                    Padding="7,0,7,0"
                                     Name="dataMonitorLogButton"
                                     Click="dataMonitorLogButton_Click"
-                                    ToolTip="{DynamicResource DataMonitorLog}">
-                                    <fa:FontAwesome Name="dataMonitorLogIcon"  Foreground="Firebrick" Icon="Wpforms" />
-                                </Button>
+                                    ToolTip="{DynamicResource DataMonitorLog}"
+                                    FontFamily="{StaticResource IconFont}" 
+                                    Content="&#xe62f;" 
+                                    Foreground="Firebrick" 
+                                    FontSize="13"/>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="2"  Padding="0">
                                 <Button
@@ -742,9 +746,11 @@
                                     Padding="8,0,8,0"
                                     Name="dataMonitorScriptEditButton"
                                     Click="dataMonitorScriptEditButton_Click"
-                                    ToolTip="{DynamicResource DataMonitorScriptEdit}">
-                                    <fa:FontAwesome Name="dataMonitorScriptEditIcon"  Foreground="ForestGreen" Icon="code" />
-                                </Button>
+                                    ToolTip="{DynamicResource DataMonitorScriptEdit}"
+                                    FontFamily="{StaticResource IconFont}" 
+                                    Content="&#xe60f;" 
+                                    Foreground="ForestGreen" 
+                                    FontSize="13"/>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="3"  Padding="0">
                                 <Button
@@ -1053,18 +1059,22 @@
                             Margin="2,0,0,0"
                             Padding="8,0,8,0"
                             ToolTip="{DynamicResource GraphLog}"
-                            Click="graphLogButton_Click">
-                            <fa:FontAwesome Name="GraphLogIcon1"  Foreground="Firebrick" Icon="Wpforms" />
-                        </Button>
+                            Click="graphLogButton_Click"
+                            FontFamily="{StaticResource IconFont}" 
+                            Content="&#xe62f;" 
+                            Foreground="Firebrick" 
+                            FontSize="13"/>
                         <Button
                             Name="GraphScriptEditButto1n"
                             Grid.Column="3"
                             Margin="2,0,0,0"
                             Padding="8,0,8,0"
                             ToolTip="{DynamicResource GraphEditScript}"
-                            Click="graphEditScriptButton_Click">
-                            <fa:FontAwesome Name="GraphScriptEditIcon1"  Foreground="ForestGreen" Icon="code" />
-                        </Button>
+                            Click="graphEditScriptButton_Click"
+                            FontFamily="{StaticResource IconFont}" 
+                            Content="&#xe60f;" 
+                            Foreground="ForestGreen" 
+                            FontSize="13"/>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -1075,40 +1085,21 @@
             Grid.Row="0"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
-            <Button  
-                BorderThickness="0"
-                Click="Language_Click"
-                Margin="0, 3, 0, 0"
-                HorizontalAlignment="Right"
-                ToolTip="{DynamicResource ChangeLanguage}"
-                VerticalAlignment="Top">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <ContentPresenter />
-                    </ControlTemplate>
-                </Button.Template>
-                <Grid>
-                    <fa:FontAwesome 
-                        Foreground="CornflowerBlue" 
-                        Icon="Globe">
-                        <fa:FontAwesome.Style>
-                            <Style TargetType="fa:FontAwesome">
-                                <Setter Property="FontSize" Value="17" />
-                            </Style>
-                        </fa:FontAwesome.Style>
-                    </fa:FontAwesome>
-                </Grid>
-            </Button>
             <Button
+                Name="graphSwIcon"
                 BorderThickness="0"
                 Grid.Column="0"
                 Grid.Row="0"
                 Click="GraphSwButton_Click"
-                Width="35" 
                 Margin="0, 3, 0, 0"
+                Padding="0"
                 HorizontalAlignment="Right"
                 ToolTip="{DynamicResource GraphSwButton}"
-                VerticalAlignment="Top">
+                VerticalAlignment="Top"
+                FontFamily="{StaticResource IconFont}" 
+                Content="{Binding graphSw, Converter={StaticResource GraphSwIconConverter}}"
+                Foreground="CornflowerBlue" 
+                FontSize="21">
 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
@@ -1116,19 +1107,6 @@
                     </ControlTemplate>
                 </Button.Template>
 
-                <Grid>
-                    <fa:FontAwesome
-                        Name="graphSwIcon"
-                        Icon="{Binding graphSw, Converter={StaticResource GraphSwIconConverter}}"
-                        Foreground="CornflowerBlue" 
-                        Visibility="Visible">
-                        <fa:FontAwesome.Style>
-                            <Style TargetType="fa:FontAwesome">
-                                <Setter Property="FontSize" Value="17" />
-                            </Style>
-                        </fa:FontAwesome.Style>
-                    </fa:FontAwesome>
-                </Grid>
             </Button>
         </StackPanel>
 
@@ -1215,7 +1193,7 @@
                 Padding="0"
                 Margin="2,2,0,2"
                 Click="MoreSettingButton_Click"
-                Content="{DynamicResource MoreSettings}"/>
+                Content="{DynamicResource MoreSetting}"/>
             <TextBox
                 Name="toSendDataTextBox"
                 Grid.RowSpan="2"
@@ -1232,6 +1210,7 @@
                 Grid.RowSpan="2"
                 Grid.Column="6"
                 Height="56"
+                Padding="0"
                 HorizontalAlignment="Stretch"
                 Margin="0"
                 Command="{StaticResource SendUartData}"
@@ -1242,7 +1221,7 @@
                         Icon="paperplane">
                     <fa:FontAwesome.Style>
                         <Style TargetType="fa:FontAwesome">
-                            <Setter Property="FontSize" Value="20" />
+                            <Setter Property="FontSize" Value="25" />
                             <!-- 设置图标大小 -->
                         </Style>
                     </fa:FontAwesome.Style>

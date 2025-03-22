@@ -114,7 +114,7 @@ namespace AtopSerial
 
                     //绘制曲线
                     PlotFrame.Navigate(new Uri("Pages/PlotPage.xaml", UriKind.Relative));
-                    
+
                     //加载初始波特率
                     var baudRateTemp = Tools.Global.setting.baudRate.ToString();
                     if(baudRateComboBox.Items.Contains(baudRateTemp))
@@ -283,6 +283,14 @@ namespace AtopSerial
                     sendDataButton.Margin = new Thickness(0, 0, 0, 0);
                 }
             }));
+        }
+
+        public void PlotSettingNavigation()
+        {
+            if (PlotFrame.Content is PlotPage PlotWindow)
+            {
+                PlotWindow.PoltSettingParameterSyn();
+            }
         }
 
         private bool DoInvoke(Action action)
@@ -495,7 +503,7 @@ namespace AtopSerial
                                         Tools.Global.uart.Open();
                                         Dispatcher.Invoke(new Action(delegate
                                         {
-                                            openClosePortTextBlock.Text = (TryFindResource("OpenPort_close") as string ?? "?!");
+                                            openClosePortTextBlock.SetResourceReference(TextBlock.TextProperty, "OpenPort_close");
                                             serialPortsListComboBox.IsEnabled = false;
                                         }));
                                     }
@@ -583,7 +591,7 @@ namespace AtopSerial
             }
             else
             {
-                openClosePortTextBlock.Text = (TryFindResource("OpenPort_open") as string ?? "?!");
+                openClosePortTextBlock.SetResourceReference(TextBlock.TextProperty, "OpenPort_open");
                 serialPortsListComboBox.IsEnabled = true;
                 refreshPortList();
             }
@@ -714,7 +722,7 @@ namespace AtopSerial
                             //Tools.Logger.AddUartLogDebug($"[openPort]change show");
                             this.Dispatcher.Invoke(new Action(delegate
                             {
-                                openClosePortTextBlock.Text = (TryFindResource("OpenPort_close") as string ?? "?!");
+                                openClosePortTextBlock.SetResourceReference(TextBlock.TextProperty, "OpenPort_close");
                                 serialPortsListComboBox.IsEnabled = false;
                             }));
                             //Tools.Logger.AddUartLogDebug($"[openPort]check to send");
@@ -762,7 +770,7 @@ namespace AtopSerial
                     Tools.MessageBox.Show(TryFindResource("ErrorClosePort") as string ?? "?!");
                 }
                 //Tools.Logger.AddUartLogDebug($"[OpenClosePortButton]change show");
-                openClosePortTextBlock.Text = (TryFindResource("OpenPort_open") as string ?? "?!");
+                openClosePortTextBlock.SetResourceReference(TextBlock.TextProperty, "OpenPort_open");
                 serialPortsListComboBox.IsEnabled = true;
                 //Tools.Logger.AddUartLogDebug($"[OpenClosePortButton]change show done");
                 refreshPortList(lastPort);
@@ -1800,19 +1808,6 @@ namespace AtopSerial
         private void receivedCountTextBlock_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
             Tools.Global.setting.ReceivedCount = 0;
-        }
-
-        private void Language_Click(object sender, RoutedEventArgs e)
-        {
-            
-            if (Tools.Global.setting.language == "zh-CN")
-                Tools.Global.setting.language = "en-US";
-            else
-                Tools.Global.setting.language = "zh-CN";
-            if (Tools.Global.uart.IsOpen())
-                openClosePortTextBlock.Text = TryFindResource("OpenPort_close") as string ?? "?!";
-            else
-                openClosePortTextBlock.Text = TryFindResource("OpenPort_open") as string ?? "?!";
         }
 
         private void GraphSwButton_Click(object sender, RoutedEventArgs e)

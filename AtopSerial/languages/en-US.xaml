@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="AppTitle">AtopSerial</system:String>
+    <system:String x:Key="Language_Select">Language/语言</system:String>
+    <system:String x:Key="Language_zh-CN">中文（简体）</system:String>
+    <system:String x:Key="Language_en-US">English</system:String>
     <system:String x:Key="OpenPort_open">Open</system:String>
     <system:String x:Key="OpenPort_close">Close</system:String>
     <system:String x:Key="OpenPort_port">Port</system:String>
@@ -11,7 +14,7 @@
     <system:String x:Key="ErrorSendFail">Serial port data send failed! Please check connection!</system:String>
     <system:String x:Key="ErrorScript">Lua script for send data has error,please check:</system:String>
     <system:String x:Key="ClearLog">Clear Log</system:String>
-    <system:String x:Key="MoreSettings">Settings</system:String>
+    <system:String x:Key="MoreSetting">Settings</system:String>
     <system:String x:Key="SendDataButton">Send</system:String>
     <system:String x:Key="LanguageList">en-US</system:String>
     <system:String x:Key="SendDataButtonTip">Keyboard:Ctrl+Enter</system:String>
@@ -76,8 +79,15 @@
     <system:String x:Key="InputDialogConfirm">OK</system:String>
     <system:String x:Key="InputDialogCancel">Cancel</system:String>
     <system:String x:Key="InputDialogTitle">Notice</system:String>
-    <system:String x:Key="SettingTitle">More serial port settings</system:String>
-    <system:String x:Key="SettingBasic">Setting</system:String>
+    <system:String x:Key="SettingTitle">Serial port settings</system:String>
+    <system:String x:Key="BasicSetting">Basic Setting</system:String>
+    <system:String x:Key="PlotSetting">Plot Setting</system:String>
+    <system:String x:Key="PlotLineWidth">Plot Line Width: </system:String>
+    <system:String x:Key="PlotStyle">Plot Style: </system:String>
+    <system:String x:Key="PlotRenderQuality">Render Quality: </system:String>
+    <system:String x:Key="DoubleClickToExpandFullScreen">Double Click To Expand Full Screen</system:String>
+    <system:String x:Key="ShowRefreshRate">Show Refresh</system:String>
+    <system:String x:Key="PlotGridShow">show Grid</system:String>
     <system:String x:Key="SettingAutoReconnect">Auto reconnect after disconnect</system:String>
     <system:String x:Key="SettingOpenLogFolder">Open serial port log data folder</system:String>
     <system:String x:Key="SettingShowFormat">Data show format:</system:String>
@@ -88,15 +98,15 @@
     <system:String x:Key="SettingUartTimeout">Data pack time</system:String>
     <system:String x:Key="SettingMaxPack">Max length per packet</system:String>
     <system:String x:Key="SettingMaxByte">Max length total</system:String>
-    <system:String x:Key="SettingDataBits">Data bits:</system:String>
-    <system:String x:Key="SettingStopBit">Stop bits:</system:String>
-    <system:String x:Key="SettingParity">Parity:</system:String>
+    <system:String x:Key="SettingDataBits">Data bits: </system:String>
+    <system:String x:Key="SettingStopBit">Stop bits: </system:String>
+    <system:String x:Key="SettingParity">Parity: </system:String>
     <system:String x:Key="SettingParityNone">None</system:String>
     <system:String x:Key="SettingParityOdd">Odd</system:String>
     <system:String x:Key="SettingParityEven">Even</system:String>
     <system:String x:Key="SettingParityMark">Mark</system:String>
     <system:String x:Key="SettingParitySpace">Space</system:String>
-    <system:String x:Key="Encoding">Encoding:</system:String>
+    <system:String x:Key="Encoding">Encoding: </system:String>
     <system:String x:Key="SettingSendLuaScript">Transmit preprocess</system:String>
     <system:String x:Key="SettingRecvLuaScript">Receive preprocess</system:String>
     <system:String x:Key="SettingLuaTestScript">Test script</system:String>

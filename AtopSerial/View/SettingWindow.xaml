@@ -6,7 +6,7 @@
     xmlns:Default="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="Default"
     x:Class="AtopSerial.SettingWindow"
-    Title="{DynamicResource SettingTitle}"
+    Title="{DynamicResource AppTitle}"
     Width="420"
     Height="500"
     MinWidth="420"
@@ -23,9 +23,21 @@
             <ColumnDefinition Width="*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
         <TabControl>
-            <TabItem Header="{DynamicResource SettingBasic}">
+            <TabItem Header="{DynamicResource MoreSetting}">
                 <ScrollViewer>
                     <StackPanel Margin="5,0,0,0">
+
+                        <Grid Margin="5,5,10,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="DarkGray" Height="1" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{DynamicResource BasicSetting}" Margin="5,0" VerticalAlignment="Center"/>
+                            <Border Grid.Column="2" Background="DarkGray" Height="1" VerticalAlignment="Center"/>
+                        </Grid>
+
                         <CheckBox
                             Margin="5"
                             Content="{DynamicResource SettingAutoReconnect}"
@@ -69,6 +81,81 @@
                             <TextBox MinWidth="60" Text="{Binding maxLogAutoClear, UpdateSourceTrigger=PropertyChanged}" />
                             <TextBlock VerticalAlignment="Center" Text=" Bytes" />
                         </StackPanel>
+
+                        <WrapPanel Margin="5">
+                            <TextBlock VerticalAlignment="Center" Text="{DynamicResource Language_Select}" />
+                            <ComboBox
+                                x:Name="languageSelectionComboBox"
+                                SelectionChanged="languageSelectionComboBox_SelectionChanged">
+                                <ComboBoxItem Content="{DynamicResource Language_zh-CN}" />
+                                <ComboBoxItem Content="{DynamicResource Language_en-US}" />
+                            </ComboBox>
+                        </WrapPanel>
+                        
+                        <Grid Margin="5,5,10,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="DarkGray" Height="1" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{DynamicResource PlotSetting}" Margin="5,0" VerticalAlignment="Center"/>
+                            <Border Grid.Column="2" Background="DarkGray" Height="1" VerticalAlignment="Center"/>
+                        </Grid>
+
+                        <CheckBox
+                                Margin="5"
+                                IsChecked="{Binding plotShowRefreshRate}"
+                                Content="{DynamicResource ShowRefreshRate}"
+                                Click="PlotSetting_Click"/>
+
+                        <CheckBox
+                                Margin="5"
+                                IsChecked="{Binding plotGridShow}"
+                                Content="{DynamicResource PlotGridShow}"
+                                Click="PlotSetting_Click"/>
+
+                        <StackPanel Margin="5" Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="{DynamicResource PlotLineWidth}" />
+                            <TextBox 
+                                MinWidth="60" 
+                               	LostFocus="plotLineWidth_LostFocus"
+                                PreviewKeyDown="plotLineWidth_PreviewKeyDown"
+                                Text="{Binding plotLineWidth, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+
+                        <WrapPanel Margin="5">
+                            <TextBlock VerticalAlignment="Center" Text="{DynamicResource PlotStyle}" />
+                            <ComboBox
+                                x:Name="plotStyleComboBox"
+                                SelectionChanged="plotStyleComboBox_SelectionChanged">
+                                <ComboBoxItem Content="None" />
+                                <ComboBoxItem Content="Solid" />
+                            </ComboBox>
+                        </WrapPanel>
+
+                        <WrapPanel Margin="5">
+                            <TextBlock VerticalAlignment="Center" Text="{DynamicResource PlotRenderQuality}" />
+                            <ComboBox
+                                x:Name="plotRenderComboBox"
+                                SelectionChanged="plotRenderComboBox_SelectionChanged">
+                                <ComboBoxItem Content="Low" />
+                                <ComboBoxItem Content="Hight" />
+                                <ComboBoxItem Content="LowWhileDragging" />
+                            </ComboBox>
+                        </WrapPanel>
+                        
+                        <Grid Margin="5,5,10,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Background="DarkGray" Height="1" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{DynamicResource SettingTitle}" Margin="5,0" VerticalAlignment="Center"/>
+                            <Border Grid.Column="2" Background="DarkGray" Height="1" VerticalAlignment="Center"/>
+                        </Grid>
+
                         <WrapPanel Margin="5">
                             <TextBlock VerticalAlignment="Center" Text="{DynamicResource SettingDataBits}" />
                             <ComboBox
@@ -196,7 +283,7 @@
                             Padding="8,0,8,0"
                                 Click="DeleteScriptButtonSend_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                            <fa:FontAwesome Foreground="DarkCyan" Icon="trash" />
+                            <fa:FontAwesome Foreground="DarkCyan" Icon="trash"  FontSize="14"/>
                         </Button>
                     </WrapPanel>
                     <WrapPanel
@@ -336,7 +423,7 @@
                                 Padding="8,0,8,0"
                                 Click="DeleteScriptButtonRev_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                            <fa:FontAwesome Foreground="DarkCyan" Icon="trash" />
+                            <fa:FontAwesome Foreground="DarkCyan" Icon="trash"  FontSize="14"/>
                         </Button>
                     </WrapPanel>
                     <WrapPanel

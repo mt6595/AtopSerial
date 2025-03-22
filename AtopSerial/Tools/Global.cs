@@ -26,7 +26,7 @@ namespace AtopSerial.Tools
     {
         public static event EventHandler ProgramClosedEvent;
         //api接口文档网址
-        public static string apiDocumentUrl = "https://github.com/chenxuuu/AtopSerial/blob/master/LuaApi.md";
+        public static string apiDocumentUrl = "https://github.com/mt6595/AtopSerial/blob/main/LuaApi.md";
         //主窗口是否被关闭？
         private static bool _isMainWindowsClosed = false;
         public static bool isMainWindowsClosed

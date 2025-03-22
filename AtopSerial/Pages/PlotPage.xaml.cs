@@ -48,7 +48,17 @@ namespace AtopSerial.Pages
             Plot.Plot.SetAxisLimits();
             Plot.RightClicked -= Plot.DefaultRightClickEvent;
             Plot.RightClicked += CustomRightClickEvent;
+            //Plot.MouseDoubleClick += ThemeGraph;   
             Plot.Plot.Legend();
+            if (Tools.Global.setting.plotRenderQuality == 0)
+                Plot.Configuration.Quality = ScottPlot.Control.QualityMode.Low;
+            else if (Tools.Global.setting.plotRenderQuality == 1)
+                Plot.Configuration.Quality = ScottPlot.Control.QualityMode.High;
+            else
+                Plot.Configuration.Quality = ScottPlot.Control.QualityMode.LowWhileDragging;
+            Plot.Configuration.DoubleClickBenchmark = false;
+            Plot.Plot.Benchmark(Tools.Global.setting.plotShowRefreshRate);
+            Plot.Plot.Grid(Tools.Global.setting.plotGridShow);
             PlotDataY = PlotDataYList.Select(innerList => innerList.ToArray()).ToArray();
 
             Array.Clear(PlotDataYIndex, 0, PlotDataYIndex.Length);
@@ -89,15 +99,25 @@ namespace AtopSerial.Pages
             LuaEnv.LuaApis.EnvluaPlotClear += luaPlotClear;
             LuaEnv.LuaApis.EnvluaPlotInit += luaPlotInit;
         }
-        private void PlotPreviewDragOver(object sender, DragEventArgs e)
+
+        public void PoltSettingParameterSyn()
         {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            foreach (string file in files)
+            if (Tools.Global.setting.plotRenderQuality == 0)
+                Plot.Configuration.Quality = ScottPlot.Control.QualityMode.Low;
+            else if (Tools.Global.setting.plotRenderQuality == 1)
+                Plot.Configuration.Quality = ScottPlot.Control.QualityMode.High;
+            else
+                Plot.Configuration.Quality = ScottPlot.Control.QualityMode.LowWhileDragging;
+            Plot.Plot.Benchmark(Tools.Global.setting.plotShowRefreshRate);
+            for (int iTemp = 0; iTemp < SignlGriph.Length; iTemp++)
             {
-                // 在这里可以执行你想要的操作，比如读取文件内容、处理文件等
-                MessageBox.Show("文件路径：" + file);
+                SignlGriph[iTemp].LineStyle = (LineStyle)Tools.Global.setting.plotStyle;
+                SignlGriph[iTemp].LineWidth = Tools.Global.setting.plotLineWidth;
             }
+            Plot.Plot.Grid(Tools.Global.setting.plotGridShow);
+            PlotRender.Set();
         }
+
         private void CustomRightClickEvent(object sender, EventArgs e)
         {
             MenuItem CopyImageMenuItem = new MenuItem() { Header = TryFindResource("GraphCopyImage") as string ?? "?!" };
@@ -428,12 +448,12 @@ namespace AtopSerial.Pages
                 Array.Clear(PlotDataY[iTemp], 0, PlotDataY[iTemp].Length);
                 SignlGriph[iTemp].Label = "Graph-" + iTemp;
                 SignlGriph[iTemp].IsVisible = false;
-                SignlGriph[iTemp].LineStyle = LineStyle.Solid;
+                SignlGriph[iTemp].LineStyle = (LineStyle)Tools.Global.setting.plotStyle;
                 SignlGriph[iTemp].Smooth = false;
                 SignlGriph[iTemp].SmoothTension = 0.5;
                 SignlGriph[iTemp].OffsetY = 0;
                 SignlGriph[iTemp].ScaleY = 1;
-                SignlGriph[iTemp].LineWidth = 1;
+                SignlGriph[iTemp].LineWidth = Tools.Global.setting.plotLineWidth;
                 SignlGriph[iTemp].IsHighlighted = false;
                 SignlGriph[iTemp].HighlightCoefficient = 2f;
             }
@@ -475,7 +495,7 @@ namespace AtopSerial.Pages
                 if (KeyValue != null) SignlGriph[GraphIndex].HighlightCoefficient = int.Parse(KeyValue);
                 //Table.Get<string, string>("Color", out KeyValue);
                 PlotRender.Set();
-                return;
+                return; 
             }
 
             foreach (object Value in GraphParams)
@@ -506,7 +526,7 @@ namespace AtopSerial.Pages
                 if (Value is double) Point = (double)Value;
                 else if(Value is long) Point = (double)((long)Value);
                 else{ Index++;continue;}
-                PlotDataY[Index][PlotDataYIndex[Index]++] = Point;
+                PlotDataY[Index][PlotDataYIndex[Index]] = Point;
                 SignlGriph[Index].MaxRenderIndex = PlotDataYIndex[Index];
                 if (++PlotDataYIndex[Index] >= MaxPoints) PlotDataYIndex[Index] = 0;
                 Index++;

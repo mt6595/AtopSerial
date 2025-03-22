@@ -58,9 +58,9 @@ namespace AtopSerial.Pages
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((bool)value)
-                return "listalt";
+                return "\ue694";
             else
-                return "areachart";
+                return "\ue766";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>

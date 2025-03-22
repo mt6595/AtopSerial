@@ -3,6 +3,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <system:String x:Key="AppTitle">AtopSerial</system:String>
+    <system:String x:Key="Language_Select">Language/语言</system:String>
+    <system:String x:Key="Language_zh-CN">中文（简体）</system:String>
+    <system:String x:Key="Language_en-US">English</system:String>
     <system:String x:Key="OpenPort_open">打开</system:String>
     <system:String x:Key="OpenPort_close">关闭</system:String>
     <system:String x:Key="OpenPort_port">串口</system:String>
@@ -11,7 +14,7 @@
     <system:String x:Key="ErrorSendFail">串口数据发送失败！请检查连接！</system:String>
     <system:String x:Key="ErrorScript">处理发送数据的脚本运行错误，请检查发送脚本后再试，错误信息：</system:String>
     <system:String x:Key="ClearLog">清空日志</system:String>
-    <system:String x:Key="MoreSettings">更多设置</system:String>
+    <system:String x:Key="MoreSetting">更多设置</system:String>
     <system:String x:Key="SendDataButton">发送</system:String>
     <system:String x:Key="SendDataButtonTip">快捷键：Ctrl+Enter</system:String>
     <system:String x:Key="RefreshPortButton">刷新串口</system:String>
@@ -27,7 +30,7 @@
     <system:String x:Key="QuickSendHex">HEX</system:String>
     <system:String x:Key="QuickSendButtonTip">右击此按键，设置显示内容</system:String>
     <system:String x:Key="QuickSendHexTip">以十六进制数据发送</system:String>
-    <system:String x:Key="QuickSendIdTip">右击序号，可更改改条目位置</system:String>
+    <system:String x:Key="QuickSendIdTip">右击序号，可更改条目位置</system:String>
     <system:String x:Key="QuickSendListNameTip">右击名称，可更改当前快捷发送列表名称</system:String>
     <system:String x:Key="QuickSendListNameChangeTip">更改当前快捷发送列表名称</system:String>
     <system:String x:Key="QuickSendButton">发送</system:String>
@@ -76,8 +79,15 @@
     <system:String x:Key="InputDialogConfirm">确定</system:String>
     <system:String x:Key="InputDialogCancel">取消</system:String>
     <system:String x:Key="InputDialogTitle">提示</system:String>
-    <system:String x:Key="SettingTitle">更多串口设置</system:String>
-    <system:String x:Key="SettingBasic">基本设置</system:String>
+    <system:String x:Key="SettingTitle">串口设置</system:String>
+    <system:String x:Key="BasicSetting">基本设置</system:String>
+    <system:String x:Key="PlotSetting">曲线设置</system:String>
+    <system:String x:Key="PlotLineWidth">曲线线宽：</system:String>
+    <system:String x:Key="PlotStyle">曲线风格：</system:String>
+    <system:String x:Key="PlotRenderQuality">渲染质量：</system:String>
+    <system:String x:Key="DoubleClickToExpandFullScreen">双击扩展全屏</system:String>
+    <system:String x:Key="ShowRefreshRate">显示刷新率</system:String>
+    <system:String x:Key="PlotGridShow">显示栅格</system:String>
     <system:String x:Key="SettingAutoReconnect">自动恢复被断开的串口连接</system:String>
     <system:String x:Key="SettingOpenLogFolder">打开串口收发日志目录</system:String>
     <system:String x:Key="SettingShowFormat">串口数据显示方式：</system:String>

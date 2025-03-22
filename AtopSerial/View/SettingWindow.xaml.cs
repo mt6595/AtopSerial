@@ -1,6 +1,8 @@
+using AtopSerial.Pages;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Search;
+using ScottPlot;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -55,6 +57,12 @@ namespace AtopSerial
             dataBitsComboBox.SelectedIndex = Tools.Global.setting.dataBits - 5;
             stopBitComboBox.SelectedIndex = Tools.Global.setting.stopBit - 1;
             dataCheckComboBox.SelectedIndex = Tools.Global.setting.parity;
+            plotStyleComboBox.SelectedIndex = Tools.Global.setting.plotStyle;
+            plotRenderComboBox.SelectedIndex = Tools.Global.setting.plotRenderQuality;
+            if (Tools.Global.setting.language == "zh-CN")
+                languageSelectionComboBox.SelectedIndex = 0;
+            else
+                languageSelectionComboBox.SelectedIndex = 1;
 
             //快速搜索
             SearchPanel.Install(textEditor.TextArea);
@@ -258,6 +266,73 @@ namespace AtopSerial
             }
         }
 
+        private void plotLineWidth_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                var _mainWindow = Application.Current.Windows
+                .Cast<Window>()
+                .FirstOrDefault(window => window is MainWindow) as MainWindow;
+                _mainWindow?.PlotSettingNavigation();
+            }
+        }
+
+        private void plotLineWidth_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var _mainWindow = Application.Current.Windows
+            .Cast<Window>()
+            .FirstOrDefault(window => window is MainWindow) as MainWindow;
+            _mainWindow?.PlotSettingNavigation();
+        }
+        
+        private void languageSelectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (languageSelectionComboBox.SelectedItem != null)
+            {
+                if(languageSelectionComboBox.SelectedIndex == 0)
+                    Tools.Global.setting.language = "zh-CN";
+                else
+                    Tools.Global.setting.language = "en-US";
+            }
+        }
+
+        private void plotStyleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (plotStyleComboBox.SelectedItem != null)
+            {
+                Tools.Global.setting.plotStyle = plotStyleComboBox.SelectedIndex;
+                var _mainWindow = Application.Current.Windows
+                .Cast<Window>()
+                .FirstOrDefault(window => window is MainWindow) as MainWindow;
+                _mainWindow?.PlotSettingNavigation();
+            }
+        }
+
+        private void plotRenderComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (plotRenderComboBox.SelectedItem != null)
+            {
+                Tools.Global.setting.plotRenderQuality = plotRenderComboBox.SelectedIndex;
+                var _mainWindow = Application.Current.Windows
+                .Cast<Window>()
+                .FirstOrDefault(window => window is MainWindow) as MainWindow;
+                _mainWindow?.PlotSettingNavigation();
+            }
+        }
+
+        private void graphScaleY_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            double result;
+            if (e.Key == Key.Enter)
+            {
+                ToSnatchGraphItems Item = ((TextBox)sender).Tag as ToSnatchGraphItems;
+                if (double.TryParse(Item.scaleY, out result))
+                {
+                    PlotPage.PlotScaleY(Item.channel - 1, result);
+                }
+            }
+        }
+
         private void StopBitComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (stopBitComboBox.SelectedItem != null)
@@ -391,14 +466,23 @@ namespace AtopSerial
                 Tools.MessageBox.Show($"Folder opening failed, please open manually.Path:{Tools.Global.ProfilePath}logs");
             }
         }
+
         private void ExtendDataSendGrid_Click(object sender, EventArgs e)
         {
             var _mainWindow = Application.Current.Windows
             .Cast<Window>()
             .FirstOrDefault(window => window is MainWindow) as MainWindow;
-            _mainWindow.RenderDataSendGrid();
+            _mainWindow?.RenderDataSendGrid();
         }
         
+        private void PlotSetting_Click(object sender, EventArgs e)
+        {
+            var _mainWindow = Application.Current.Windows
+            .Cast<Window>()
+            .FirstOrDefault(window => window is MainWindow) as MainWindow;
+            _mainWindow?.PlotSettingNavigation();
+        }
+
         private void encodingComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox c = sender as ComboBox;

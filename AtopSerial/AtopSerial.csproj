@@ -342,6 +342,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Lua.xshd" />
+    <Resource Include="Resources\iconfont.ttf" />
     <Resource Include="DefaultFiles\core_script\head.lua" />
     <Resource Include="DefaultFiles\core_script\JSON.lua" />
     <Resource Include="DefaultFiles\core_script\log.lua" />

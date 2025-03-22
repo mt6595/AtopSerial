@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <FontFamily x:Key="IconFont">pack://application:,,,/AtopSerial;component/Resources/iconfont.ttf#iconfont</FontFamily>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

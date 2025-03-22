@@ -1,9 +1,9 @@
 --[[
 	Function apiPlotAttribute([Table])
-		Table key:PlotIndex					Table Value:0~20
+		Table key:PlotIndex					Table Value:0~9
 		Table key:Label						Table Value:string
 		Table key:IsVisible					Table Value:"true"/"false"
-		Table key:LineStyle					Table Value:"None"/"Solid"/"Dash"/"DashDot"/"DashDotDot"/"Dot"/"Custom"
+		Table key:LineStyle					Table Value:"None"/"Solid"
 		Table key:Smooth					Table Value:"true"/"false"
 		Table key:SmoothTension				Table Value:int/double
 		Table key:OffsetY					Table Value:int/double
@@ -16,10 +16,10 @@
 		Clear historical plot data and initialize default plot attributes
 
 	Function apiPlotAddPoint(Index, Value)
-		Add plot points, up to 10
+		Add plot points, up to 9
 
 	Function apiPlotAddPointMulti(...)
-		Add plot points, up to 10
+		Add plot points, up to 9
 		Demo 1:apiPlotAddPointMulti(DataA,DataB,DataC)
 		Demo 2:apiPlotAddPointMulti(nil,nil,DataC)
 ]]
@@ -27,16 +27,16 @@
 local math = require("math")
 sys.taskInit(function ()
 	apiPlotInit();
-	apiPlotConfig({PlotIndex = 0,Label = "Graph-0",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 1,Label = "Graph-1",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 2,Label = "Graph-2",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 3,Label = "Graph-3",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 4,Label = "Graph-4",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 5,Label = "Graph-5",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 6,Label = "Graph-6",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 7,Label = "Graph-7",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 8,Label = "Graph-8",IsVisible = "true",LineStyle = "Solid"})
-	apiPlotConfig({PlotIndex = 9,Label = "Graph-9",IsVisible = "true",LineStyle = "Solid"})
+	apiPlotConfig({PlotIndex = 0,Label = "Graph-0",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 1,Label = "Graph-1",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 2,Label = "Graph-2",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 3,Label = "Graph-3",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 4,Label = "Graph-4",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 5,Label = "Graph-5",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 6,Label = "Graph-6",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 7,Label = "Graph-7",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 8,Label = "Graph-8",IsVisible = "true"})
+	apiPlotConfig({PlotIndex = 9,Label = "Graph-9",IsVisible = "true"})
 	while true do
 		for iTemp = 0, 100000-1 do
             apiPlotAddPoint(0,400*math.sin(2 * math.pi * 300 * iTemp / 299 + 10))
