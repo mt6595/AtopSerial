@@ -110,6 +110,17 @@ If you are a C# developer, you can get the source code from this link[AtopSerial
 
 📚 If you are a C# developer, you need to know about Lua support in C# [Click Here](https://github.com/Tencent/xLua)
 
+## About Digital Signatures
+This software is an open-source project with no source of income, so we are unable to apply for a digital signature for the executable files. When running the application, you may encounter virus interception or security warnings about the publisher not being verified. You can refer to the following methods to resolve this issue:
+
+- **Generate the Executable from Source Code**: You can obtain the source code from this repository and compile it yourself to ensure the security of the software.
+
+- **Bypass Windows Warning**: If you trust this software, you can bypass the unsigned warning from Windows by following these steps:
+ 1. Right-click on the executable file.
+ 2. Select "Properties."
+ 3. In the "General" tab, check "Unblock."
+ 4. Click "OK" and run the software.
+
 ## Letter of Thanks
 I am engaged in firmware development in the power supply industry and have no knowledge of C# development. Relying on five years of experience as a "copy-and-paste tailor," I spent dozens of days and nights modifying the LLCOM open-source project by ChenXuuu. Special thanks to the following open-source projects for their assistance:
 - [LLCOM](https://github.com/chenxuuu/llcom)
@@ -121,7 +132,7 @@ I am engaged in firmware development in the power supply industry and have no kn
 - [Fontawesome](https://fontawesome.com/)
 - [iconfont](https://www.iconfont.cn/)
 
-## Supports
+## Technical Supports
 - 🛠️[GitHub Issue](https://github.com/mt6595/AtopSerial/issues)
 - 🛠️[GitCode Issue](https://gitcode.com/mt6595/AtopSerial/issues)
 - 📫Email `1012560534@qq.com`

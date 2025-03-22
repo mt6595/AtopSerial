@@ -109,6 +109,18 @@
 
 📚 如果你是c#开发者，你需要了解c#对Lua的支持 [点击这里](https://github.com/Tencent/xLua)
 
+## 关于数字签名
+本软件是开源项目，没有盈利来源，我们无法为可执行文件申请数字签名。您在运行应用程序时，可能会碰到病毒拦截或者无法验证发布者的安全警告，您可以参考如下方法解决：
+
+- **从源代码生成可执行文件**：你可以从本仓库获取源代码并自行编译，以确保软件的安全性。
+
+- **绕过 Windows 警告**：如果你信任本软件，可以按照以下步骤绕过 Windows 的未签名警告：
+  1. 右键点击可执行文件
+  2. 选择“属性”
+  3. 在“常规”选项卡中，勾选“解除锁定”
+  4. 点击“确定”并运行软件
+
+
 ## 感谢信
 本人从事电源行业固件开发，对c#开发没有任何了解。凭借五年的“Ctrl CV”的裁缝经验，花费了几十个日夜对LLCOM开源项目进行重构。特别感谢以下开源项目的帮助：
 - [LLCOM](https://github.com/chenxuuu/llcom)
@@ -120,9 +132,7 @@
 - [Fontawesome](https://fontawesome.com/)
 - [iconfont](https://www.iconfont.cn/)
 
-
-
-## 支持
+## 技术支持
 - 🛠️[GitHub Issue](https://github.com/mt6595/AtopSerial/issues)
 - 🛠️[GitCode Issue](https://gitcode.com/mt6595/AtopSerial/issues)
 - 📫Email `1012560534@qq.com`
