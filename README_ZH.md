@@ -105,7 +105,7 @@
 ## Lua Script 文档
 📔 Lua 5.3 参考手册 [点击这里](https://www.lua.org/manual/5.3/)
 
-📖 AtopSerial Tool Lua  API 参考手册 [点击这里](https://github.com/mt6595/AtopSerial/blob/main/LuaApi.md)
+📖 AtopSerial Tool Lua  API 参考手册 [点击这里](https://github.com/mt6595/AtopSerial/blob/main/docs/LuaApi.md)
 
 📚 如果你是c#开发者，你需要了解c#对Lua的支持 [点击这里](https://github.com/Tencent/xLua)
 
