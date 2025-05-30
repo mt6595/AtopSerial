@@ -1,4 +1,6 @@
+using AtopSerial.Model;
 using AtopSerial.Pages;
+using AtopSerial.Tools;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Highlighting.Xshd;
 using ICSharpCode.AvalonEdit.Search;
@@ -424,17 +426,31 @@ namespace AtopSerial
             newLuaFileWrapPanel.Visibility = Visibility.Collapsed;
         }
 
+        private void luaTestTextTypebutton_Click(object sender, RoutedEventArgs e)
+        {
+            if (luaTestTextTypebutton.Content.ToString() == "Aa")
+                luaTestTextTypebutton.Content = "Hex";
+            else
+                luaTestTextTypebutton.Content = "Aa";
+        }
+
         private void LuaTestbutton_Click(object sender, RoutedEventArgs e)
         {
             if (luaFileListSend.SelectedItem != null && !fileLoadingSend)
             {
                 try
                 {
+                    byte[] data = Tools.Global.GetEncoding().GetBytes(luaTestTextBox.Text);
+                    if (luaTestTextTypebutton.Content.ToString() == "Hex")
+                        data = Tools.Global.Hex2Byte(Tools.Global.Byte2String(data));
+
                     byte[] r = LuaEnv.LuaLoader.Run($"{luaFileListSend.SelectedItem as string}.lua",
                                         new System.Collections.ArrayList{"uartData",
-                                           Tools.Global.GetEncoding().GetBytes(luaTestTextBox.Text)});
-                    Tools.MessageBox.Show($"{TryFindResource("SettingLuaRunResult") as string ?? "?!"}\r\nHEX：" + Tools.Global.Byte2Hex(r) +
-                        $"\r\n{TryFindResource("SettingLuaRawText") as string ?? "?!"}" + Tools.Global.Byte2Readable(r));
+                                           data});
+                    //Tools.MessageBox.Show($"{TryFindResource("SettingLuaRunResult") as string ?? "?!"}\r\nHEX: " + Tools.Global.Byte2Hex(r) +
+                    //$"\r\nTEXT: " + Tools.Global.Byte2Readable(r));
+                    Tuple<bool, string> ret = Tools.InputDialog.OpenDialog($"\r\nTEXT: " + Tools.Global.Byte2Readable(r) + $"\r\nHEX: " + Tools.Global.Byte2Hex(r) + "\r\n",
+                    null, TryFindResource("SettingLuaRunResult") as string ?? "?!");
                 }
                 catch(Exception ex)
                 {
@@ -570,21 +586,33 @@ namespace AtopSerial
             newLuaFileWrapPanelRev.Visibility = Visibility.Collapsed;
         }
 
+        private void luaTestTextTypebuttonRev_Click(object sender, RoutedEventArgs e)
+        {
+            if(luaTestTextTypebuttonRev.Content.ToString() == "Aa")
+                luaTestTextTypebuttonRev.Content = "Hex";
+            else
+                luaTestTextTypebuttonRev.Content = "Aa";
+        }
+
         private void luaTestbuttonRev_Click(object sender, RoutedEventArgs e)
         {
             if (luaFileListRev.SelectedItem != null && !fileLoadingRev)
             {
                 try
                 {
+                    byte[] data = Tools.Global.GetEncoding().GetBytes(luaTestTextBoxRev.Text);
+                    if (luaTestTextTypebuttonRev.Content.ToString() == "Hex")
+                        data = Tools.Global.Hex2Byte(Tools.Global.Byte2String(data));
+
                     byte[] r = LuaEnv.LuaLoader.Run(
                         $"{luaFileListRev.SelectedItem as string}.lua",
                         new System.Collections.ArrayList{
-                            "uartData",
-                            Tools.Global.GetEncoding().GetBytes(luaTestTextBoxRev.Text)
-                        },
+                        "uartData",data},
                         "user_script/user_script_recv_convert/");
-                    Tools.MessageBox.Show($"{TryFindResource("SettingLuaRunResult") as string ?? "?!"}\r\nHEX：" + Tools.Global.Byte2Hex(r) +
-                        $"\r\n{TryFindResource("SettingLuaRawText") as string ?? "?!"}" + Tools.Global.Byte2Readable(r));
+                        //Tools.MessageBox.Show($"{TryFindResource("SettingLuaRunResult") as string ?? "?!"}\r\nHEX: " + Tools.Global.Byte2Hex(r) +
+                        //$"\r\nTEXT: " + Tools.Global.Byte2Readable(r));
+                        Tuple<bool, string> ret = Tools.InputDialog.OpenDialog($"\r\nTEXT: " + Tools.Global.Byte2Readable(r) + $"\r\nHEX: " + Tools.Global.Byte2Hex(r) + "\r\n",
+                        null, TryFindResource("SettingLuaRunResult") as string ?? "?!");
                 }
                 catch (Exception ex)
                 {

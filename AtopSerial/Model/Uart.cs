@@ -183,7 +183,7 @@ namespace AtopSerial.Model
                 WaitUartReceive.WaitOne();
                 if (Tools.Global.isMainWindowsClosed)
                     return;
-                if (Tools.Global.setting.timeout > 0)
+                if (Tools.Global.setting.timeout > 0 && Tools.Global.setting.subpackageShow != 1)
                     System.Threading.Thread.Sleep(Tools.Global.setting.timeout);//等待时间
                 List<byte> result = new List<byte>();
                 while (true)//循环读
@@ -201,11 +201,11 @@ namespace AtopSerial.Model
                             break;
                         result.AddRange(rev);//加到list末尾
                     }
-                    catch { break; }//崩了？
+                    catch { break; }
 
                     if (result.Count > Tools.Global.setting.maxLength)//长度超了
                         break;
-                    if (Tools.Global.setting.timeout > 0)//如果是设置了等待间隔时间
+                    if (Tools.Global.setting.timeout > 0 && Tools.Global.setting.subpackageShow != 1)
                     {
                         System.Threading.Thread.Sleep(Tools.Global.setting.timeout);//等待时间
                     }

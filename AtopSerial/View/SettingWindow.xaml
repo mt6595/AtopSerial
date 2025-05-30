@@ -59,8 +59,7 @@
                         <CheckBox
                             Margin="5"
                             Content="{DynamicResource EscapeSend}"
-                            IsChecked="{Binding escapeSend}"
-                            ToolTip="{DynamicResource EscapeSendTip}" />
+                            IsChecked="{Binding escapeSend}"/>
                         <CheckBox
                             Margin="5"
                             IsChecked="{Binding extendDataSendGrid}"
@@ -320,14 +319,21 @@
                         Grid.Row="1"
                         Margin="3"
                         Visibility="Collapsed">
-                        <TextBlock VerticalAlignment="Center" Text="{DynamicResource SettingLuaTestInput}" />
+                        <TextBlock VerticalAlignment="Center" Text="{DynamicResource SettingLuaTranTestInput}" />
                         <TextBox
                             x:Name="luaTestTextBox"
                             Width="150"
                             Text="uart data" />
                         <Button
+                            x:Name="luaTestTextTypebutton"
+                            Margin="2,0,0,0"
+                            HorizontalAlignment="Center"
+                            Content="Aa"
+                            VerticalAlignment="Center"
+                            Click="luaTestTextTypebutton_Click"/>
+                        <Button
                             x:Name="luaTestbutton"
-                            Margin="3,0,0,0"
+                            Margin="2,0,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Click="LuaTestbutton_Click"
@@ -339,7 +345,7 @@
                         </Button>
                         <Button
                             x:Name="luaTestCancelbutton"
-                            Margin="3,0,0,0"
+                            Margin="2,0,0,0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Click="LuaTestCancelbutton_Click"
@@ -460,11 +466,18 @@
                         Grid.Row="1"
                         Margin="3"
                         Visibility="Collapsed">
-                        <TextBlock VerticalAlignment="Center" Text="{DynamicResource SettingLuaTestInput}" />
+                        <TextBlock VerticalAlignment="Center" Text="{DynamicResource SettingLuaReceTestInput}" />
                         <TextBox
                             x:Name="luaTestTextBoxRev"
                             Width="150"
                             Text="uart data" />
+                        <Button
+                            x:Name="luaTestTextTypebuttonRev"
+                            Margin="2,0,0,0"
+                            HorizontalAlignment="Center"
+                            Content="Aa"
+                            VerticalAlignment="Center"
+                            Click="luaTestTextTypebuttonRev_Click"/>
                         <Button
                             x:Name="luaTestbuttonRev"
                             Margin="2,0,0,0"

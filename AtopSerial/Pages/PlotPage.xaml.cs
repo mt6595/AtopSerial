@@ -495,7 +495,7 @@ namespace AtopSerial.Pages
                 if (KeyValue != null) SignlGriph[GraphIndex].HighlightCoefficient = int.Parse(KeyValue);
                 //Table.Get<string, string>("Color", out KeyValue);
                 PlotRender.Set();
-                return; 
+                return;
             }
 
             foreach (object Value in GraphParams)

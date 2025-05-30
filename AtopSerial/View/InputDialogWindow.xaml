@@ -15,7 +15,10 @@
     Topmost="True"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <DockPanel LastChildFill="True">
+    <DockPanel 
+        LastChildFill="True"
+            MaxHeight="1000"
+            MaxWidth= "500">
         <DockPanel DockPanel.Dock="Top">
             <TextBlock
                 x:Name="PromptLabel"
@@ -23,7 +26,9 @@
                 DockPanel.Dock="Top"
                 TextWrapping="Wrap" />
         </DockPanel>
-        <Grid Margin="3" DockPanel.Dock="Bottom">
+        <Grid 
+            Margin="3" 
+            DockPanel.Dock="Bottom">
             <Grid x:Name="TwoButtons"
                   HorizontalAlignment="Right">
                 <Grid.ColumnDefinitions>
@@ -58,6 +63,7 @@
         <TextBox
             x:Name="InputText"
             Margin="5"
+            Visibility="Visible"
             Text="{Binding Value}" />
     </DockPanel>
 </Window>

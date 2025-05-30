@@ -111,11 +111,11 @@
     <system:String x:Key="SettingSendLuaScript">发送预处理脚本</system:String>
     <system:String x:Key="SettingRecvLuaScript">接收预处理脚本</system:String>
     <system:String x:Key="SettingLuaTestScript">测试脚本</system:String>
-    <system:String x:Key="SettingLuaTestInput">待测试的值：</system:String>
+    <system:String x:Key="SettingLuaTranTestInput">发送数据测试：</system:String>
+    <system:String x:Key="SettingLuaReceTestInput">接收数据测试：</system:String>
     <system:String x:Key="SettingLuaTestButton">测试输入值</system:String>
     <system:String x:Key="SettingLuaText3">查看接口文档，可点击接口文档按钮。</system:String>
     <system:String x:Key="SettingLuaRunResult">运行结果</system:String>
-    <system:String x:Key="SettingLuaRawText">原始字符串：</system:String>
     <system:String x:Key="ChangeLanguage">语言/Language</system:String>
     <system:String x:Key="SubpackageShow">分包显示</system:String>
     <system:String x:Key="LockLogButton">锁定视图禁止滚动</system:String>
@@ -141,7 +141,6 @@
     <system:String x:Key="AutoViewSw">自动切换视图</system:String>
     <system:String x:Key="AutoViewSwTip">根据选项卡自动切换文本视图和曲线视图</system:String>
     <system:String x:Key="EscapeSend">允许使用转义符发送</system:String>
-    <system:String x:Key="EscapeSendTip">支持"\0","\r","\n","\t","\\"转义符</system:String>
     <system:String x:Key="ExtendDataSendGrid">扩展数据发送区域</system:String>
     <system:String x:Key="SettingMaxGraphLength">设置曲线最大长度</system:String>
     <system:String x:Key="DataMonitorCard">数据监测</system:String>

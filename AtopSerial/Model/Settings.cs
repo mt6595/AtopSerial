@@ -28,7 +28,7 @@ namespace AtopSerial.Model
         private bool _autoSaveLog = true;
         private int _showHexFormat = 0;
         private bool _hexSend = false;
-        private bool _subpackageShow = true;
+        private int _subpackageShow = 0;
         private bool _showSend = true;
         private int _parity = 0;
         private int _timeout = 20;
@@ -42,7 +42,7 @@ namespace AtopSerial.Model
         private bool _topmost = false;
         private uint _maxLength = 10240;
         private int _maxGraphLength = 1000;
-        private string _language = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+        private string _language = "en-US";
         private int _encoding = 65001;
         private bool _enableSymbol = true;
         private bool _graphSw = true;
@@ -51,6 +51,12 @@ namespace AtopSerial.Model
         private int _maxLogPackShow = 1024 * 2;
         private int _maxLogAutoClear = 1024*100;
         private int _automaticSendTimer = 1000;
+        private int _plotDoubleClickFullScreen = 0;
+        private bool _plotShowRefreshRate = false;
+        private bool _plotGridShow = true;
+        private int _plotLineWidth = 1;
+        private int _plotStyle = 1;
+        private int _plotRenderQuality = 2;
         private string _quickListName0 = "Quick Group 0";
         private string _quickListName1 = "Quick Group 1";
         private string _quickListName2 = "Quick Group 2";
@@ -405,7 +411,7 @@ namespace AtopSerial.Model
         /// <summary>
         /// 是否需要时间戳分包显示
         /// </summary>
-        public bool subpackageShow
+        public int subpackageShow
         {
             get
             {
@@ -538,7 +544,7 @@ namespace AtopSerial.Model
         }
         
         /// <summary>
-        /// 曲线显示风格
+        /// 曲线主题
         /// </summary>
         public int graphTheme
         {
@@ -549,6 +555,102 @@ namespace AtopSerial.Model
             set
             {
                 _graphTheme = value;
+                SaveConfig();
+            }
+        }
+
+        /// <summary>
+        /// 曲线渲染质量
+        /// </summary>
+        public int plotRenderQuality
+        {
+            get
+            {
+                return _plotRenderQuality;
+            }
+            set
+            {
+                _plotRenderQuality = value;
+                SaveConfig();
+            }
+        }
+
+        /// <summary>
+        /// 曲线双击满屏
+        /// </summary>
+        public int plotDoubleClickFullScreen
+        {
+            get
+            {
+                return _plotDoubleClickFullScreen;
+            }
+            set
+            {
+                _plotDoubleClickFullScreen = value;
+                SaveConfig();
+            }
+        }
+        
+
+        /// <summary>
+        /// 曲线显示刷新率
+        /// </summary>
+        public bool plotShowRefreshRate
+        {
+            get
+            {
+                return _plotShowRefreshRate;
+            }
+            set
+            {
+                _plotShowRefreshRate = value;
+                SaveConfig();
+            }
+        }
+
+        /// <summary>
+        /// 曲线显示刷新率
+        /// </summary>
+        public bool plotGridShow
+        {
+            get
+            {
+                return _plotGridShow;
+            }
+            set
+            {
+                _plotGridShow = value;
+                SaveConfig();
+            }
+        }
+
+        /// <summary>
+        /// 曲线线宽
+        /// </summary>
+        public int plotLineWidth
+        {
+            get
+            {
+                return _plotLineWidth;
+            }
+            set
+            {
+                _plotLineWidth = value;
+                SaveConfig();
+            }
+        }
+        /// <summary>
+        /// 曲线风格
+        /// </summary>
+        public int plotStyle
+        {
+            get
+            {
+                return _plotStyle;
+            }
+            set
+            {
+                _plotStyle = value;
                 SaveConfig();
             }
         }

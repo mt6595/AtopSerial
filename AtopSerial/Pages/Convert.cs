@@ -138,7 +138,7 @@ namespace AtopSerial.Pages
     /// bool为true时显示连接，否则显示断开
     /// </summary>
     [ValueConversion(typeof(int), typeof(bool?))]
-    public class showHexFormat : IValueConverter
+    public class isThreeStateFormat : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

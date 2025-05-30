@@ -15,7 +15,7 @@
     <Page.Resources>
         <local:boolVisibeConverter x:Key="boolVisibeConverter" />
         <local:boolNotVisibeConverter x:Key="boolNotVisibeConverter" />
-        <local:showHexFormat x:Key="showHexFormatConverter" />
+        <local:isThreeStateFormat x:Key="isThreeStateConverter" />
     </Page.Resources>
     <Grid x:Name="mainGrid" Background="Transparent">
         <Grid.RowDefinitions>
@@ -24,19 +24,12 @@
         </Grid.RowDefinitions>
         <FlowDocumentScrollViewer
             IsToolBarVisible="False"
-            Style="{x:Null}"
             Name="uartDataFlowDocument"
             MinZoom="50"
             Margin="0,0,4,0"
             MouseLeave="uartDataFlowDocument_MouseLeave"
+            Style="{x:Null}"
             VerticalScrollBarVisibility="Visible">
-            <!--  更改段落间距  -->
-            <FlowDocumentScrollViewer.Resources>
-                <Style TargetType="{x:Type Paragraph}">
-                    <Setter Property="Margin" Value="0" />
-                </Style>
-            </FlowDocumentScrollViewer.Resources>
-            <!--  更改段落间距END  -->
             <FlowDocument
                 FontFamily="Consolas,Microsoft YaHei,微软雅黑"
                 FontSize="12"
@@ -51,27 +44,28 @@
             Orientation="Horizontal"
             Visibility="{Binding Path=IsMouseOver, ElementName=mainGrid, Converter={StaticResource boolVisibeConverter}}">
             <CheckBox
-                Name="HEXBox"
-                Margin="0,0,0,0"
-                Content="{DynamicResource ShowHexFormat}"
-                IsChecked="{Binding showHexFormat, Converter={StaticResource showHexFormatConverter}}"
-                IsThreeState="True"
-                ToolTip="{DynamicResource ShowHexFormatTip}" />
-            <CheckBox
-                Name="ShowSendCheckBox"
-                Margin="10,0,0,0"
-                Content="{DynamicResource ShowSendMode}"
-                IsChecked="{Binding showSend}" />
-            <CheckBox
                 Name="HexSendCheckBox"
                 Margin="10,0,0,0"
                 Content="{DynamicResource HexSendMode}"
                 IsChecked="{Binding hexSend}" />
             <CheckBox
+                Name="HexShowCheckBox"
+                Margin="10,0,0,0"
+                Content="{DynamicResource ShowHexFormat}"
+                IsChecked="{Binding showHexFormat, Converter={StaticResource isThreeStateConverter}}"
+                IsThreeState="True"
+                ToolTip="{DynamicResource ShowHexFormatTip}" />
+            <CheckBox
                 Name="SubpackageShowCheckBox"
                 Margin="10,0,0,0"
                 Content="{DynamicResource SubpackageShow}"
-                IsChecked="{Binding subpackageShow}" />
+                IsThreeState="True"
+                IsChecked="{Binding subpackageShow, Converter={StaticResource isThreeStateConverter}}"/>
+            <CheckBox
+                Name="ShowSendCheckBox"
+                Margin="10,0,0,0"
+                Content="{DynamicResource ShowSendMode}"
+                IsChecked="{Binding showSend}" />
             <CheckBox
                 Name="DisableLogCheckBox"
                 Margin="10,0,0,0"

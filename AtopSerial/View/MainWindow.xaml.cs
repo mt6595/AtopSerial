@@ -331,7 +331,7 @@ namespace AtopSerial
             {
                 if (iTemp.commit == null)
                     iTemp.commit = TryFindResource("QuickSendButton") as string ?? "?!";
-                if (toSendListItems.Count < 200)
+                if (toSendListItems.Count < 1000)
                 {
                     toSendListItems.Add(iTemp);
                 }
@@ -348,7 +348,7 @@ namespace AtopSerial
         private void LoadDataMonitorList()
         {
             if (Tools.Global.setting.dataMonitorListNum < 0) Tools.Global.setting.dataMonitorListNum = 10;
-            if (Tools.Global.setting.dataMonitorListNum > 200) Tools.Global.setting.dataMonitorListNum = 200;
+            if (Tools.Global.setting.dataMonitorListNum > 1000) Tools.Global.setting.dataMonitorListNum = 1000;
             if (Tools.Global.setting.toDataMonitorItemsSave.Count < Tools.Global.setting.dataMonitorListNum)
             {
                 for (var iTemp = Tools.Global.setting.toDataMonitorItemsSave.Count; iTemp < Tools.Global.setting.dataMonitorListNum; iTemp++)
@@ -864,9 +864,15 @@ namespace AtopSerial
         private void SendUartData_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             string data = toSendDataTextBox.Text;
-            if (Tools.Global.setting.escapeSend)
-                data = data.Replace(@"\r", "\r").Replace(@"\n", "\n").Replace(@"\t", "\t").Replace(@"\\", "\\").Replace(@"\0", "\0");
-            
+            if (Tools.Global.setting.escapeSend && !Tools.Global.setting.hexSend)
+            {
+                try
+                {
+                    data = Regex.Unescape(data);
+                }
+                catch { };
+            }
+
             if (!Tools.Global.uart.IsOpen())
                 openPort();
 
@@ -875,7 +881,6 @@ namespace AtopSerial
 
         private void QuiclList_PreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //AtopSerial.Tools.MessageBox.Show("Right-click detected on Menu!");
             ToSendData data = ((Menu)sender).Tag as ToSendData;
             Tuple<bool, string> ret = Tools.InputDialog.OpenDialog(TryFindResource("QuickSendGroupRenameInfo") as string ?? "?!",
                 Global.setting.GetQuickListNameNow(), TryFindResource("QuickSendGroupRenamePopup") as string ?? "?!");
@@ -921,7 +926,7 @@ namespace AtopSerial
         }
         private void QuickAddSendListButton_Click(object sender, RoutedEventArgs e)
         {
-            if (toSendListItems.Count < 200)
+            if (toSendListItems.Count < 1000)
             {
                 toSendListItems.Add(new ToSendData() { id = toSendListItems.Count + 1, text = "", hex = false, commit = TryFindResource("QuickSendButton") as string ?? "?!" });
                 QuickScrollViewer.ScrollToVerticalOffset(QuickScrollViewer.ScrollableHeight + 100);
@@ -962,7 +967,7 @@ namespace AtopSerial
                     toSendListItems.Clear();
                     foreach (var d in data)
                     {
-                        if (toSendListItems.Count < 200)
+                        if (toSendListItems.Count < 1000)
                         {
                             toSendListItems.Add(d);
                         }
@@ -1018,9 +1023,11 @@ namespace AtopSerial
         private void QuickSendButton_rightClick(object sender, MouseButtonEventArgs e)
         {
             ToSendData data = ((Button)sender).Tag as ToSendData;
+            if (data.commit == "")
+                data.commit = TryFindResource("SendDataButton") as string ?? "?!";
             Tuple<bool, string> ret = Tools.InputDialog.OpenDialog(TryFindResource("QuickSendSetButton") as string ?? "?!",
                 data.commit, TryFindResource("QuickSendChangeButton") as string ?? "?!");
-            if(ret.Item1)
+            if (ret.Item1)
             {
                 ((Button)sender).Content = data.commit = ret.Item2;
             }
@@ -1154,6 +1161,7 @@ namespace AtopSerial
             Tools.Global.setting.toDataMonitorItemsSave = new List<ToDataMonitorItems>(toMonitorItems);
             Tools.Global.setting.dataMonitorListNum = toMonitorItems.Count;
         }
+
         public void GraphListSave(object sender, EventArgs e)
         {
             CheckToSnatchGraphChannel();
@@ -1859,16 +1867,6 @@ namespace AtopSerial
             canSaveSendList = true;
         }
 
-        private void QuickListNameStackPanel_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Tuple<bool, string> ret = Tools.InputDialog.OpenDialog("", Global.setting.GetQuickListNameNow(), TryFindResource("QuickSendListNameChangeTip") as string ?? "?!");
-            if (!ret.Item1)
-                return;
-
-            Global.setting.SetQuickListNameNow(ret.Item2);
-            QuickListPageTextBlock.Text = ret.Item2;
-        }
-
         private void ClearLuaPrintButton_Click(object sender, RoutedEventArgs e)
         {
             luaLogTextBox.Clear();
@@ -1896,7 +1894,7 @@ namespace AtopSerial
 
         private void MonitorAddSendListButton_Click(object sender, RoutedEventArgs e)
         {
-            if (toMonitorItems.Count < 200)
+            if (toMonitorItems.Count < 1000)
             {
                 toMonitorItems.Add(new ToDataMonitorItems() { channel = toMonitorItems.Count + 1, description = "", result = "", sampleEn = false });
                 MonitorScrollViewer.ScrollToVerticalOffset(MonitorScrollViewer.ScrollableHeight + 100);
@@ -1913,6 +1911,7 @@ namespace AtopSerial
             }
             MonitorListSave(null, EventArgs.Empty);
         }
+
         private void MonitorSendImportButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Forms.OpenFileDialog OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -1934,7 +1933,7 @@ namespace AtopSerial
                 {
                     foreach (var d in data)
                     {
-                        if (toMonitorItems.Count < 200)
+                        if (toMonitorItems.Count < 1000)
                         {
                             toMonitorItems.Add(d);
                         }
@@ -1977,11 +1976,6 @@ namespace AtopSerial
                 Item.result = "";
             }
             //MonitorListSave(null, EventArgs.Empty);
-        }
-
-        private void uartDataFlowDocument_LostFocus(object sender, RoutedEventArgs e)
-        {
-            dataShowFrame.BorderThickness = new Thickness(0);
         }
 
         private void graphScaleY_LostFocus(object sender, RoutedEventArgs e)
@@ -2153,32 +2147,22 @@ namespace AtopSerial
                 }
             }
         }
+
         private void dataMonitorAllSelectButton_Click(object sender, RoutedEventArgs e)
-        {   
-            if (AtopSerial.MainWindow.toDataMonitor.allSelectSw == true)
-            {
-                AtopSerial.MainWindow.toDataMonitor.allSelectSw = false;
-                for (var iTemp = 0; iTemp < toMonitorItems.Count; iTemp++)
-                {
-                    toMonitorItems[iTemp].sampleEn = false;
-                    if (AtopSerial.MainWindow.toDataMonitor.selectShowSw == true)
-                        toMonitorItems[iTemp].visibility = Visibility.Collapsed;
-                }
-            }
-            else
-            {
-                AtopSerial.MainWindow.toDataMonitor.allSelectSw = true;
-                for (var iTemp = 0; iTemp < toMonitorItems.Count; iTemp++)
-                {
-                    toMonitorItems[iTemp].visibility = Visibility.Visible;
-                    toMonitorItems[iTemp].sampleEn = true;
-                }
-            }
-        }
-
-        private void PlotFrame_DragEnter(object sender, DragEventArgs e)
         {
-
+            bool SelectSw = !AtopSerial.MainWindow.toDataMonitor.allSelectSw;
+            ItemsControl itemsControl = toDataMonitorList;
+            using (itemsControl.Items.DeferRefresh())
+            {
+                AtopSerial.MainWindow.toDataMonitor.allSelectSw = SelectSw;
+                foreach (var item in toMonitorItems)
+                {
+                    item.sampleEn = SelectSw;
+                    item.visibility = SelectSw || !AtopSerial.MainWindow.toDataMonitor.selectShowSw
+                        ? Visibility.Visible
+                        : Visibility.Collapsed;
+                }
+            }
         }
     }
 
@@ -2205,7 +2189,7 @@ namespace AtopSerial
             set
             {
                 _visibility = value;
-                DataChanged?.Invoke(0, EventArgs.Empty);
+                //DataChanged?.Invoke(0, EventArgs.Empty);
             }
         }
         public int channel
@@ -2223,7 +2207,7 @@ namespace AtopSerial
             set
             {
                 _description = value;
-                DataChanged?.Invoke(0, EventArgs.Empty);
+                //DataChanged?.Invoke(0, EventArgs.Empty);
             }
         }
         public string result
@@ -2241,7 +2225,7 @@ namespace AtopSerial
             set
             {
                 _sampleEn = value;
-                DataChanged?.Invoke(0, EventArgs.Empty);
+                //DataChanged?.Invoke(0, EventArgs.Empty);
             }
         }
     }

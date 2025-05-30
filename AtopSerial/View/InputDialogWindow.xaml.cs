@@ -22,7 +22,7 @@ namespace AtopSerial
 
         public string Value { get; set; }
 
-        public InputDialogWindow(string prompt, string defaultInput = "", string title = null)
+        public InputDialogWindow(string prompt, string defaultInput = null, string title = null)
         {
             InitializeComponent();
             this.DataContext = this;

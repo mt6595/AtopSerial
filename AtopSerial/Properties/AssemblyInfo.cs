@@ -38,8 +38,8 @@ using System.Windows;
 //      修订号
 //
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值
-[assembly: AssemblyVersion("2.3.0.1")]
-[assembly: AssemblyFileVersion("2.3.0.1")]
+[assembly: AssemblyVersion("2.3.0.2")]
+[assembly: AssemblyFileVersion("2.3.0.2")]
 
 //若要开始生成可本地化的应用程序，请设置
 //.csproj 文件中的 <UICulture>CultureYouAreCodingWith</UICulture>

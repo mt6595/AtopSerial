@@ -80,7 +80,6 @@
                                 <Menu 
                                     Name="QuiclList" 
                                     PreviewMouseRightButtonDown="QuiclList_PreviewMouseRightButtonDown"
-                                    MouseDown="QuickListNameStackPanel_MouseRightButtonDown"
                                     Grid.Column="0" 
                                     HorizontalAlignment="Left">
                                     <MenuItem ToolTip="{DynamicResource QuickSendChangeList}">
@@ -331,6 +330,7 @@
                             <ComboBox
                                 Name="luaFileListSend"
                                 Width="150"
+                                Margin="5,0,0,0"
                                 SelectionChanged="LuaFileList_SelectionChanged" />
                             <Button
                                 Name="newScriptButton"
@@ -436,14 +436,19 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
-                        <TextBox
-                            Name="luaLogTextBox"
-                            MinWidth="{Binding logScreenWidth}"
-                            VerticalContentAlignment="Top"
-                            IsReadOnly="true"
-                            MouseLeave="luaLogTextBox_MouseLeave"
-                            TextWrapping="Wrap"
-                            VerticalScrollBarVisibility="Auto" />
+                        <ScrollViewer 
+                                HorizontalScrollBarVisibility="Disabled"
+                                VerticalScrollBarVisibility="Visible">
+                            <TextBox
+                                Name="luaLogTextBox"
+                                MinWidth="{Binding logScreenWidth}"
+                                VerticalContentAlignment="Top"
+                                IsReadOnly="true"
+                                MouseLeave="luaLogTextBox_MouseLeave"
+                                TextWrapping="Wrap"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                        </ScrollViewer>
                         <Grid Grid.Row="1">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
@@ -560,7 +565,7 @@
                                             <DataTemplate>
                                                 <Grid Margin="0,4,12,0"
                                                       Height="28"
-                                                      Visibility ="{Binding visibility, UpdateSourceTrigger=PropertyChanged}">
+                                                      Visibility ="{Binding visibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="25" />
                                                         <ColumnDefinition Width="*" />
@@ -577,21 +582,21 @@
                                                         Margin="0,0,2,0"
                                                         MaxLength="100"
                                                         HorizontalAlignment="Stretch"
-                                                        Text="{Binding description, UpdateSourceTrigger=PropertyChanged}" />
+                                                        Text="{Binding description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                     <TextBox
                                                         Grid.Column="2"
                                                         Margin="0,0,2,0"
                                                         HorizontalAlignment="Stretch"
                                                         IsReadOnly="True" 
                                                         MaxLength="50"
-                                                        Text="{Binding result, UpdateSourceTrigger=PropertyChanged}" />
+                                                        Text="{Binding result, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                     <CheckBox
                                                         Grid.Column="3"
                                                         Margin="0,0,2,0"
                                                         HorizontalAlignment="Center"
                                                         Click="dataMonitorSampleEn_click"
                                                         Tag="{Binding}"
-                                                        IsChecked="{Binding sampleEn, UpdateSourceTrigger=PropertyChanged}" />
+                                                        IsChecked="{Binding sampleEn, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                                                 </Grid>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -868,7 +873,7 @@
                                                             <ColumnDefinition Width="Auto" />
                                                             <ColumnDefinition Width="*" MinWidth="120"/>
                                                             <ColumnDefinition Width="85"/>
-                                                            <ColumnDefinition Width="80"/>
+                                                            <ColumnDefinition Width="85"/>
                                                             <ColumnDefinition Width="50"/>
                                                             <ColumnDefinition Width="50"/>
                                                         </Grid.ColumnDefinitions>
@@ -909,7 +914,6 @@
                                                             <ComboBoxItem Content="INT32S"/>
                                                             <ComboBoxItem Content="INT32U"/>
                                                             <ComboBoxItem Content="FLOAT"/>
-                                                            <ComboBoxItem Content="DOUBLE"/>
                                                         </ComboBox>
                                                         <TextBox
 													Grid.Column="4"
@@ -1199,6 +1203,7 @@
                 Grid.RowSpan="2"
                 Grid.Column="5"
                 Margin="2"
+                Padding="2"
                 VerticalContentAlignment="Top"
                 AcceptsReturn="True"
                 FontFamily="Consolas"

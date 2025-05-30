@@ -165,6 +165,7 @@ namespace AtopSerial.Tools
                     setting.SentCount = 0;
                     setting.ReceivedCount = 0;
                     setting.DisableLog = false;
+                    LoadLanguageFile(setting.language);
                 }
                 catch
                 {
@@ -192,8 +193,8 @@ namespace AtopSerial.Tools
             {
                 if (currentVersion.StartsWith("4."))
                 {
-                    var sv = int.Parse(currentVersion.Substring(2, 1));
-                    if (sv < 6)
+                    var pNetVersion = int.Parse(currentVersion.Substring(2, 1));
+                    if (pNetVersion < 6)
                         throw new Exception();
                 }
                 else
