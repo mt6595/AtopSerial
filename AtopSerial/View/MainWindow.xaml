@@ -1260,6 +1260,7 @@
                 </StatusBar.ItemsPanel>
                 <Button
                     Name="refreshPortButton"
+                    Margin="-4,0,0,0"
                     Grid.Column="0"
                     Click="RefreshPortButton_Click"
                     Content="{DynamicResource RefreshPortButton}"
