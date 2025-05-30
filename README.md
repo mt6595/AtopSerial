@@ -8,7 +8,7 @@
 This is a truly universal protocol parsing serial port tool, a highly flexible automation control and testing tool based on Lua scripting, and an all-encompassing virtual oscilloscope tool for the embedded industry. It supports both Chinese and English language switching, is ad-free, has no internal links, and is completely free of charge.
 
 ## Download
-The project has been open sourced since [V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0), You can get the latest release binary from this link [V2.3.0.1](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.1)
+The project has been open sourced since [V2.3.0.0](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.0), You can get the latest release binary from this link [V2.3.0.2](https://github.com/mt6595/AtopSerial/releases/tag/V2.3.0.2)
 
 If you are a C# developer, you can get the source code from this link[AtopSerial Source](https://codeload.github.com/mt6595/AtopSerial/zip/refs/heads/main)
 
