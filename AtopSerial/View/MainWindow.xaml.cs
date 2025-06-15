@@ -1015,7 +1015,13 @@ namespace AtopSerial
             {
                 string data = sendData.text;
                 if (Tools.Global.setting.escapeSend)
-                    data = data.Replace(@"\r", "\r").Replace(@"\n", "\n").Replace(@"\t", "\t").Replace(@"\\", "\\").Replace(@"\0", "\0");
+                {
+                    try
+                    {
+                        data = Regex.Unescape(data);
+                    }
+                    catch { };
+                }
                 sendUartData(Global.GetEncoding().GetBytes(data), false);
             }
         }
@@ -1061,7 +1067,13 @@ namespace AtopSerial
                                 else
                                 {
                                     if (Tools.Global.setting.escapeSend)
-                                        data = data.Replace(@"\r", "\r").Replace(@"\n", "\n").Replace(@"\t", "\t").Replace(@"\\", "\\").Replace(@"\0", "\0");
+                                    {
+                                        try
+                                        {
+                                            data = Regex.Unescape(data);
+                                        }
+                                        catch { };
+                                    }
                                     sendUartData(Global.GetEncoding().GetBytes(data), false);
                                 }
                             }

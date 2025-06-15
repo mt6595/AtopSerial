@@ -22,20 +22,15 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <FlowDocumentScrollViewer
-            IsToolBarVisible="False"
-            Name="uartDataFlowDocument"
-            MinZoom="50"
-            Margin="0,0,4,0"
-            MouseLeave="uartDataFlowDocument_MouseLeave"
-            Style="{x:Null}"
-            VerticalScrollBarVisibility="Visible">
-            <FlowDocument
-                FontFamily="Consolas,Microsoft YaHei,微软雅黑"
-                FontSize="12"
-                IsOptimalParagraphEnabled="False"
-                TextAlignment="Left" />
-        </FlowDocumentScrollViewer>
+        <avalonEdit:TextEditor
+            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+            Name="uartDataText"
+            PreviewMouseWheel="uartDataText_MouseWheel"
+            WordWrap="True"
+            IsReadOnly="True"
+            FontFamily="Consolas"
+            FontSize="10pt"
+            ShowLineNumbers="False"/>
         <StackPanel
             Grid.Row="1"
             Margin="10,0,30,3"

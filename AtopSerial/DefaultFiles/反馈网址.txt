@@ -1,2 +1,5 @@
 GitHub
 https://github.com/mt6595/AtopSerial/issues
+
+GitCode
+https://gitcode.com/mt6595/AtopSerial/issues

@@ -194,7 +194,6 @@
                                                 HorizontalAlignment="Stretch"
                                                 Click="QuickSendButton_click"
                                                 Content="{Binding commit}"
-                                                Cursor="Cross"
                                                 MouseRightButtonDown="QuickSendButton_rightClick"
                                                 Tag="{Binding}"
                                                 ToolTip="{DynamicResource QuickSendButtonTip}" />
@@ -696,14 +695,18 @@
                     </Grid>
 
                     <Grid Name="dataMonitorLogGrid" Visibility="Collapsed">
-                        <TextBox
-                            Name="dataMonitorLogTextBox"
-                            MinWidth="{Binding logScreenWidth}"
-                            VerticalContentAlignment="Top"
-                            IsReadOnly="true"
-                            MouseLeave="dataMonitorLogTextBox_MouseLeave"
-                            TextWrapping="Wrap"
-                            VerticalScrollBarVisibility="Auto" />
+                        <ScrollViewer 
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Visible">
+                            <TextBox
+                                Name="dataMonitorLogTextBox"
+                                MinWidth="{Binding logScreenWidth}"
+                                VerticalContentAlignment="Top"
+                                IsReadOnly="true"
+                                MouseLeave="dataMonitorLogTextBox_MouseLeave"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                        </ScrollViewer>
                     </Grid>
                     <DockPanel 
                         Grid.Row="1"
@@ -1023,14 +1026,18 @@
                     </Grid>
 
                     <Grid Name="graphToolLogGrid" Visibility="Collapsed" Grid.ColumnSpan="2">
-                        <TextBox
-                            Name="graphToolLogTextBox"
-                            MinWidth="{Binding logScreenWidth}"
-                            VerticalContentAlignment="Top"
-                            IsReadOnly="true"
-                            MouseLeave="graphToolLogTextBox_MouseLeave"
-                            TextWrapping="Wrap"
-                            VerticalScrollBarVisibility="Auto" />
+                        <ScrollViewer 
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Visible">
+                            <TextBox
+                                Name="graphToolLogTextBox"
+                                MinWidth="{Binding logScreenWidth}"
+                                VerticalContentAlignment="Top"
+                                IsReadOnly="true"
+                                MouseLeave="graphToolLogTextBox_MouseLeave"
+                                TextWrapping="Wrap"
+                                VerticalScrollBarVisibility="Auto" />
+                        </ScrollViewer>
                     </Grid>
 
                     <Grid Grid.Row="1" Margin="5,0,4,6" Grid.ColumnSpan="2">

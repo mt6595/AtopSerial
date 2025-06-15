@@ -141,7 +141,7 @@
     <system:String x:Key="ShowSymbolTooltip">Only support UTF8</system:String>
     <system:String x:Key="AutoViewSw">Auto switch view</system:String>
     <system:String x:Key="AutoViewSwTip">Auto toggle text view and plot view</system:String>
-    <system:String x:Key="EscapeSend">Allows sending with an escape character</system:String>
+    <system:String x:Key="EscapeSend">Allows send with an escape character</system:String>
     <system:String x:Key="ExtendDataSendGrid">Expand the data sending area</system:String>
     <system:String x:Key="SettingMaxGraphLength">Set the maximum length of the Graph</system:String>
     <system:String x:Key="DataMonitorCard">Monitor</system:String>
