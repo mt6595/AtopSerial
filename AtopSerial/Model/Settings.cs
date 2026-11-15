@@ -43,6 +43,7 @@ namespace AtopSerial.Model
         private uint _maxLength = 10240;
         private int _maxGraphLength = 1000;
         private string _language = "en-US";
+        private string _theme = "Default";
         private int _encoding = 65001;
         private bool _enableSymbol = true;
         private bool _graphSw = true;
@@ -737,6 +738,20 @@ namespace AtopSerial.Model
             {
                 _language = value;
                 Tools.Global.LoadLanguageFile(value);
+                SaveConfig();
+            }
+        }
+
+        public string theme
+        {
+            get
+            {
+                return _theme;
+            }
+            set
+            {
+                _theme = Tools.ThemeManager.Normalize(value);
+                Tools.ThemeManager.Apply(_theme);
                 SaveConfig();
             }
         }

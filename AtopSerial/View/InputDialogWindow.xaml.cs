@@ -44,6 +44,7 @@ namespace AtopSerial
             IntPtr handle = new WindowInteropHelper(this).Handle;
             Tools.Win32.HideControlBox(handle);
             HwndSource.FromHwnd(handle).AddHook(new HwndSourceHook(WndProc));
+            Tools.ThemeManager.ApplyWindowChromeTheme(this, Tools.Global.setting.theme);
             this.InputText.SelectAll();
         }
 

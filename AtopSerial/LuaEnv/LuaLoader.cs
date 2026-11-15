@@ -99,8 +99,45 @@ end
             }
         }
 
-
         private static XLua.LuaEnv luaRunner = null;
+        private static readonly object luaRunnerInitLock = new object();
+
+        /// <summary>
+        /// 确保收发转换共用的 Lua 虚拟机已创建（双重检查锁，线程安全）。
+        /// VM 创建 + CS API 反射包装 + core_script 加载
+        /// </summary>
+        private static void EnsureRunner()
+        {
+            if (luaRunner != null)
+                return;
+            lock (luaRunnerInitLock)
+            {
+                if (luaRunner != null)
+                    return;
+                var env = new XLua.LuaEnv();
+                env.Global.SetInPath("runType", "send");
+                Initial(env, "send");
+                env.DoString("runLimitStop()");
+                luaRunner = env;
+            }
+        }
+
+        /// <summary>
+        /// 预热收发转换共用的 Lua 虚拟机。
+        /// 在启动后的后台任务里调用，把首次创建的开销从用户第一次收发前移掉。
+        /// </summary>
+        public static void PreWarm()
+        {
+            try
+            {
+                EnsureRunner();
+            }
+            catch
+            {
+                //预热失败不影响使用：首次收发时会按原逻辑重试创建
+            }
+        }
+
         /// <summary>
         /// 运行lua文件并获取结果
         /// </summary>
@@ -113,15 +150,7 @@ end
             if (!File.Exists(Tools.Global.ProfilePath + path + file))
                 return new byte[] { };
 
-            if (luaRunner == null)
-            {
-                luaRunner = new XLua.LuaEnv();
-                lock(luaRunner)
-                {
-                    luaRunner.Global.SetInPath("runType", "send");//一次性处理标志
-                    Initial(luaRunner, "send");
-                }
-            }
+            EnsureRunner();
             lock (luaRunner)
             {
                 var pathIn = Tools.Global.ProfilePath + path + file;

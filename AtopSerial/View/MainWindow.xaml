@@ -39,7 +39,7 @@
     </Window.CommandBindings>
     <Grid Name="MainGrid" 
           IsEnabled="False" 
-          Background="White">
+          Background="{DynamicResource RegionBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -285,7 +285,7 @@
 						                HorizontalAlignment="Center"
 						                Click="QuickAddSendListButton_Click"
 						                ToolTip="{DynamicResource QuickListAddButtonTip}">
-                                    <fa:FontAwesome Name="quickAddSendListIcon1"  Foreground="ForestGreen" Icon="plus" />
+                                    <fa:FontAwesome Name="quickAddSendListIcon1"  Foreground="LimeGreen" Icon="plus" />
                                 </Button>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="6" Padding="0">
@@ -296,7 +296,7 @@
 						                HorizontalAlignment="Center"
 						                Click="QuickDelSendListButton_Click"
 						                ToolTip="{DynamicResource QuickListDelLastButtonTip}">
-                                    <fa:FontAwesome Name="quickDelSendListIcon1"  Foreground="Teal" Icon="minus" />
+                                    <fa:FontAwesome Name="quickDelSendListIcon1"  Foreground="MediumTurquoise" Icon="minus" />
                                 </Button>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="7" Padding="0">
@@ -338,7 +338,7 @@
                                 Click="NewScriptButton_Click"
                                 ToolTip="{DynamicResource LuaNewScript}">
                                 <Grid>
-                                    <fa:FontAwesome Foreground="LightSkyBlue" Icon="File" />
+                                    <fa:FontAwesome Foreground="LightSlateGray" Icon="File" />
                                     <fa:FontAwesome Icon="FileCodeOutline" />
                                 </Grid>
                             </Button>
@@ -348,7 +348,7 @@
                                 Padding="8,0,8,0"
                                 Click="RunScriptButton_Click"
                                 ToolTip="{DynamicResource LuaRunScript}">
-                                <fa:FontAwesome Foreground="DarkGreen" Icon="Play" />
+                                <fa:FontAwesome Foreground="DeepSkyBlue" Icon="Play" />
                             </Button>
                             <Button
                                 Name="openScriptFolderButton"
@@ -357,7 +357,7 @@
                                 Click="OpenScriptFolderButton_Click"
                                 ToolTip="{DynamicResource LuaOpenFolder}">
                                 <Grid>
-                                    <fa:FontAwesome Foreground="Yellow" Icon="FolderOpen" />
+                                    <fa:FontAwesome Foreground="Goldenrod" Icon="FolderOpen" />
                                     <fa:FontAwesome Icon="FolderOutlinepenOutline" />
                                 </Grid>
                             </Button>
@@ -367,7 +367,7 @@
                                 Padding="8,0,8,0"
                                 Click="RefreshScriptListButton_Click"
                                 ToolTip="{DynamicResource LuaRefreshList}">
-                                <fa:FontAwesome Foreground="Green" Icon="Refresh" />
+                                <fa:FontAwesome Foreground="LimeGreen" Icon="Refresh" />
                             </Button>
                             <Button
                                 Name="apiDocumentButton"
@@ -375,7 +375,7 @@
                                 Padding="8,0,8,0"
                                 Click="ApiDocumentButton_Click"
                                 ToolTip="{DynamicResource LuaApiReference}">
-                                <fa:FontAwesome Foreground="DarkSlateGray" Icon="Book" />
+                                <fa:FontAwesome Foreground="LightCoral" Icon="Book" />
                             </Button>
                             <Button
                                 Name="scriptDeleteButton"
@@ -383,7 +383,7 @@
                                 Padding="8,0,8,0"
                                 Click="DeleteScriptButton_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                                <fa:FontAwesome Foreground="DarkCyan" Icon="trash" FontSize="14"/>
+                                <fa:FontAwesome Foreground="MediumSeaGreen" Icon="trash" FontSize="14"/>
                             </Button>
                         </WrapPanel>
                         <WrapPanel
@@ -436,7 +436,7 @@
                             <RowDefinition Height="auto" />
                         </Grid.RowDefinitions>
                         <ScrollViewer 
-                                HorizontalScrollBarVisibility="Disabled"
+                                HorizontalScrollBarVisibility="Visible"
                                 VerticalScrollBarVisibility="Visible">
                             <TextBox
                                 Name="luaLogTextBox"
@@ -483,10 +483,11 @@
                                 Content="&#xe693;" 
                                 Foreground="Peru" 
                                 FontSize="14"/>
-                            <TextBox
+                            <hc:TextBox
                                 Name="runOneLineLuaTextBox"
                                 Grid.Column="3"
                                 Margin="0,3"
+                                hc:InfoElement.Placeholder="{DynamicResource RunOneLineLuaPlaceholder}"
                                 KeyDown="RunOneLineLuaTextBox_KeyDown" />
                             <Button
                                 Name="sendLuaScriptButton"
@@ -626,7 +627,7 @@
                                             ToolTip="{DynamicResource MonitorListAddButton}">
                                             <fa:FontAwesome 
                                                 Name="monitorAddSendListIcon" 
-                                                Foreground="ForestGreen" 
+                                                Foreground="LimeGreen" 
                                                 Icon="plus"/>
                                         </Button>
 
@@ -639,7 +640,7 @@
                                             ToolTip="{DynamicResource MonitorListDelLastButton}">
                                             <fa:FontAwesome 
                                                 Name="monitorDelSendListIcon" 
-                                                Foreground="Teal" 
+                                                Foreground="MediumTurquoise" 
                                                 Icon="minus"/>
                                         </Button>
 
@@ -696,7 +697,7 @@
 
                     <Grid Name="dataMonitorLogGrid" Visibility="Collapsed">
                         <ScrollViewer 
-                            HorizontalScrollBarVisibility="Disabled"
+                            HorizontalScrollBarVisibility="Visible"
                             VerticalScrollBarVisibility="Visible">
                             <TextBox
                                 Name="dataMonitorLogTextBox"
@@ -733,7 +734,6 @@
                                     Click="dataMonitorScriptRunButton_Click"
                                     HorizontalAlignment="Stretch"
                                     Margin="0,0,0,0"
-                                    Width="{Binding ActualWidth, ElementName=StatusBarItemContainer}" 
                                     Content="{DynamicResource DataMonitorScriptRun}" />
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="1"  Padding="0">
@@ -745,7 +745,7 @@
                                     ToolTip="{DynamicResource DataMonitorLog}"
                                     FontFamily="{StaticResource IconFont}" 
                                     Content="&#xe62f;" 
-                                    Foreground="Firebrick" 
+                                    Foreground="MediumTurquoise" 
                                     FontSize="13"/>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="2"  Padding="0">
@@ -757,7 +757,7 @@
                                     ToolTip="{DynamicResource DataMonitorScriptEdit}"
                                     FontFamily="{StaticResource IconFont}" 
                                     Content="&#xe60f;" 
-                                    Foreground="ForestGreen" 
+                                    Foreground="LimeGreen" 
                                     FontSize="13"/>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="3"  Padding="0">
@@ -768,7 +768,7 @@
                                     Click="dataMonitorOpenLogButton_Click"
                                     ToolTip="{DynamicResource DataMonitorOpenLog}">
                                     <Grid>
-                                        <fa:FontAwesome Name="dataMonitorOpenLogIcon"  Foreground="Yellow" Icon="FolderOpen" />
+                                        <fa:FontAwesome Name="dataMonitorOpenLogIcon"  Foreground="Goldenrod" Icon="FolderOpen" />
                                         <fa:FontAwesome Icon="FolderOutlinepenOutline" />
                                     </Grid>
                                 </Button>
@@ -782,7 +782,7 @@
                                     ToolTip="{DynamicResource DataMonitorSelectShow}">
                                     <fa:FontAwesome 
                                         Name="dataMonitorSelectShowIcon"   
-                                        Foreground="DarkCyan" 
+                                        Foreground="DeepSkyBlue" 
                                         Icon="{Binding selectShowSw,Converter={StaticResource DataMonitorSelectShowConverter}}" />
                                 </Button>
                             </StatusBarItem>
@@ -795,7 +795,7 @@
                                     ToolTip="{DynamicResource DataMonitorAllSelect}">
                                     <fa:FontAwesome 
                                         Name="dataMonitorAllSelectIcon" 
-                                        Foreground="DimGray" 
+                                        Foreground="DarkGray" 
                                         Icon="{Binding allSelectSw,Converter={StaticResource DataMonitorAllSelectConverter}}"/>
                                 </Button>
                             </StatusBarItem>
@@ -1027,7 +1027,7 @@
 
                     <Grid Name="graphToolLogGrid" Visibility="Collapsed" Grid.ColumnSpan="2">
                         <ScrollViewer 
-                            HorizontalScrollBarVisibility="Disabled"
+                            HorizontalScrollBarVisibility="Visible"
                             VerticalScrollBarVisibility="Visible">
                             <TextBox
                                 Name="graphToolLogTextBox"
@@ -1073,7 +1073,7 @@
                             Click="graphLogButton_Click"
                             FontFamily="{StaticResource IconFont}" 
                             Content="&#xe62f;" 
-                            Foreground="Firebrick" 
+                            Foreground="MediumTurquoise" 
                             FontSize="13"/>
                         <Button
                             Name="GraphScriptEditButto1n"
@@ -1084,7 +1084,7 @@
                             Click="graphEditScriptButton_Click"
                             FontFamily="{StaticResource IconFont}" 
                             Content="&#xe60f;" 
-                            Foreground="ForestGreen" 
+                            Foreground="LimeGreen" 
                             FontSize="13"/>
                     </Grid>
                 </Grid>
@@ -1126,7 +1126,7 @@
             x:Name="MainGridSplitter"
             Grid.RowSpan="2"
             Grid.Column="1"
-            Background="white"
+            Background="Transparent"
             HorizontalAlignment="Stretch"/>
 
         <!--  收发数据显示和Graph  -->
@@ -1205,7 +1205,7 @@
                 Margin="2,2,0,2"
                 Click="MoreSettingButton_Click"
                 Content="{DynamicResource MoreSetting}"/>
-            <TextBox
+            <hc:TextBox
                 Name="toSendDataTextBox"
                 Grid.RowSpan="2"
                 Grid.Column="5"
@@ -1214,6 +1214,7 @@
                 VerticalContentAlignment="Top"
                 AcceptsReturn="True"
                 FontFamily="Consolas"
+                hc:InfoElement.Placeholder="{DynamicResource SendDataTextBoxPlaceholder}"
                 Text="{Binding dataToSend}"
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Auto" />

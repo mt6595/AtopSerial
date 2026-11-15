@@ -40,6 +40,9 @@ namespace AtopSerial
         public SettingWindow()
         {
             InitializeComponent();
+            // 句柄创建后立刻设置标题栏主题，避免窗口先白后黑
+            SourceInitialized += (s, e) =>
+                Tools.ThemeManager.ApplyWindowChromeTheme(this, Tools.Global.setting.theme);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -65,6 +68,21 @@ namespace AtopSerial
                 languageSelectionComboBox.SelectedIndex = 0;
             else
                 languageSelectionComboBox.SelectedIndex = 1;
+
+            switch (Tools.ThemeManager.Normalize(Tools.Global.setting.theme))
+            {
+                case Tools.ThemeManager.DarkTheme:
+                    themeSelectionComboBox.SelectedIndex = 1;
+                    break;
+                case Tools.ThemeManager.VioletTheme:
+                    themeSelectionComboBox.SelectedIndex = 2;
+                    break;
+                default:
+                    themeSelectionComboBox.SelectedIndex = 0;
+                    break;
+            }
+
+            Tools.ThemeManager.ApplyWindowChromeTheme(this, Tools.Global.setting.theme);
 
             //快速搜索
             SearchPanel.Install(textEditor.TextArea);
@@ -296,6 +314,29 @@ namespace AtopSerial
                 else
                     Tools.Global.setting.language = "en-US";
             }
+        }
+
+        private void themeSelectionComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (themeSelectionComboBox.SelectedIndex < 0)
+                return;
+
+            string theme;
+            switch (themeSelectionComboBox.SelectedIndex)
+            {
+                case 1:
+                    theme = Tools.ThemeManager.DarkTheme;
+                    break;
+                case 2:
+                    theme = Tools.ThemeManager.VioletTheme;
+                    break;
+                default:
+                    theme = Tools.ThemeManager.DefaultTheme;
+                    break;
+            }
+
+            Tools.Global.setting.theme = theme;
+            Tools.ThemeManager.ApplyWindowChromeTheme(this, theme);
         }
 
         private void plotStyleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

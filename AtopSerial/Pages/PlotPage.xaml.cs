@@ -50,6 +50,9 @@ namespace AtopSerial.Pages
             Plot.RightClicked += CustomRightClickEvent;
             //Plot.MouseDoubleClick += ThemeGraph;   
             Plot.Plot.Legend();
+            Plot.Plot.Legend().FillColor = System.Drawing.Color.FromArgb(200, 255, 255, 255);
+            Plot.Plot.Legend().OutlineColor = System.Drawing.Color.LightGray;
+
             if (Tools.Global.setting.plotRenderQuality == 0)
                 Plot.Configuration.Quality = ScottPlot.Control.QualityMode.Low;
             else if (Tools.Global.setting.plotRenderQuality == 1)
@@ -70,9 +73,7 @@ namespace AtopSerial.Pages
                 SignlGriph[iTemp].IsVisible = false;
             }
 
-            if (Tools.Global.setting.graphTheme + 1 >= Styles.Length || Tools.Global.setting.graphTheme < 0)
-                Tools.Global.setting.graphTheme = 0;
-            Plot.Plot.Style(Styles[Tools.Global.setting.graphTheme]);
+            ApplyLinkedTheme();
 
             PlotRender.Set();
             new Thread(() =>
@@ -118,6 +119,45 @@ namespace AtopSerial.Pages
             PlotRender.Set();
         }
 
+        /// <summary>
+        /// 让曲线样式跟随软件主题：深色(Dark)用 ScottPlot Black，浅色/紫色用 ScottPlot Default。
+        /// 构造时和软件主题切换时都会调用。
+        /// </summary>
+        public void ApplyLinkedTheme()
+        {
+            bool dark = Tools.ThemeManager.Normalize(Tools.Global.setting.theme) == Tools.ThemeManager.DarkTheme;
+            ScottPlot.Styles.IStyle targetStyle = dark
+                ? (ScottPlot.Styles.IStyle)ScottPlot.Style.Gray2
+                : (ScottPlot.Styles.IStyle)ScottPlot.Style.Default;
+
+            Plot.Plot.Style(targetStyle);
+
+            // 深色主题下背景改为 #1C1C1C
+            if (dark)
+            {
+                var plotBackground = System.Drawing.Color.FromArgb(0x1C, 0x1C, 0x1C);
+                Plot.Plot.Style(figureBackground: plotBackground, dataBackground: plotBackground);
+            }
+
+            // 同步样式索引，保持 graphTheme 与实际生效的样式一致
+            int index = Array.FindIndex(Styles, s => s.GetType() == targetStyle.GetType());
+            if (index >= 0 && Tools.Global.setting.graphTheme != index)
+                Tools.Global.setting.graphTheme = index;
+
+            // 图例底色/边框/文字颜色跟随主题，避免深色下仍是一片半透明白配黑字
+            var legend = Plot.Plot.Legend();
+            if (legend != null)
+            {
+                legend.FillColor = dark
+                    ? System.Drawing.Color.FromArgb(200, 30, 30, 30)
+                    : System.Drawing.Color.FromArgb(200, 255, 255, 255);
+                legend.OutlineColor = dark ? System.Drawing.Color.DimGray : System.Drawing.Color.LightGray;
+                legend.FontColor = dark ? System.Drawing.Color.White : System.Drawing.Color.Black;
+            }
+
+            PlotRender.Set();
+        }
+
         private void CustomRightClickEvent(object sender, EventArgs e)
         {
             MenuItem CopyImageMenuItem = new MenuItem() { Header = TryFindResource("GraphCopyImage") as string ?? "?!" };
@@ -156,20 +196,23 @@ namespace AtopSerial.Pages
             ContextMenu rightClickMenu = new ContextMenu();
             rightClickMenu.Items.Add(CopyImageMenuItem);
             rightClickMenu.Items.Add(SaveImageMenuItem);
+            rightClickMenu.Items.Add(new Separator());
             rightClickMenu.Items.Add(GraphDataExportItem);
             rightClickMenu.Items.Add(GraphDataImportItem);
             rightClickMenu.Items.Add(new Separator());
             rightClickMenu.Items.Add(ClearGraphMenuItem);
             rightClickMenu.Items.Add(ZoomFitMenuItem);
             rightClickMenu.Items.Add(GenerateMenuItem);
-            rightClickMenu.Items.Add(new Separator());
-            rightClickMenu.Items.Add(ThemeGraphItem);
+            //rightClickMenu.Items.Add(new Separator());
+            //rightClickMenu.Items.Add(ThemeGraphItem);
             rightClickMenu.IsOpen = true;
         }
+
         public void CopyAsImage(object sender, EventArgs e)
         {
             Clipboard.SetImage(WpfPlot.BmpImageFromBmp(Plot.Plot.Render()));
         }
+
         public void SaveAsImage(object sender, EventArgs e)
         {
             var SavePlotImage = new SaveFileDialog
@@ -232,6 +275,7 @@ namespace AtopSerial.Pages
             Plot.Plot.Style(Styles[Tools.Global.setting.graphTheme]);
             PlotRender.Set();
         }
+
         public void GraphDataExport(object sender, EventArgs e)
         {
             System.Windows.Forms.SaveFileDialog saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -326,9 +370,11 @@ namespace AtopSerial.Pages
             }
             PlotRender.Set();
         }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
         }
+
         private void Plot_MouseMove(object sender, MouseEventArgs e)
         {
         }
@@ -394,12 +440,14 @@ namespace AtopSerial.Pages
                 SignlGriph[PoltIndex].OffsetY = OffsetY;
             PlotRender.Set();
         }
+
         public static void PlotScaleY(int PoltIndex, double OffsetY)
         {
             if (PoltIndex < MaxTable)
                 SignlGriph[PoltIndex].ScaleY = OffsetY;
             PlotRender.Set();
         }
+
         public static void PlotIsVisible(int PoltIndex, bool IsVisible)
         {
             if (PoltIndex < MaxTable)
@@ -515,6 +563,7 @@ namespace AtopSerial.Pages
             if (++PlotDataYIndex[Index] >= MaxPoints) PlotDataYIndex[Index] = 0;
             PlotRender.Set();
         }
+
         private void luaPlotAddPointMulti(params object[] GraphParams)
         {
             int Index = 0;

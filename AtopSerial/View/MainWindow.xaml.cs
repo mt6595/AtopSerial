@@ -55,6 +55,7 @@ namespace AtopSerial
         {
             InitializeComponent();
             Tools.Global.LoadSetting();
+            Tools.ThemeManager.Apply(Tools.Global.setting.theme);
             if (Tools.Global.setting.windowHeight != 0 &&
                 Tools.Global.setting.windowLeft > 0 &&
                 Tools.Global.setting.windowTop > 0 &&
@@ -67,6 +68,10 @@ namespace AtopSerial
                 this.Height = Tools.Global.setting.windowHeight;
             }
             Tools.Global.setting.logScreenWidth = SystemParameters.FullPrimaryScreenWidth - 20;
+
+            // 句柄创建后立刻设置标题栏主题，避免启动时先白后黑
+            SourceInitialized += (s, e) =>
+                Tools.ThemeManager.ApplyWindowChromeTheme(this, Tools.Global.setting.theme);
         }
 
         private static bool fileLoadingRunScript = false;
@@ -95,9 +100,13 @@ namespace AtopSerial
         object lockSendUartDataObject = new object();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            Tools.ThemeManager.ApplyWindowChromeTheme(this, Tools.Global.setting.theme);
             //延迟启动，加快软件第一屏出现速度
             Task.Run(() =>
             {
+                    //预热收发转换共用的 Lua 虚拟机
+                    LuaEnv.LuaLoader.PreWarm();
+
                     this.Dispatcher.Invoke(new Action(delegate {
                     //接收到、发送数据成功回调
                     Tools.Global.uart.UartDataRecived += Uart_UartDataRecived;
@@ -291,6 +300,24 @@ namespace AtopSerial
             {
                 PlotWindow.PoltSettingParameterSyn();
             }
+        }
+
+        /// <summary>
+        /// 软件主题切换后同步曲线样式（曲线页尚未创建时为空操作，其构造时会自行同步）
+        /// </summary>
+        public void PlotThemeSync()
+        {
+            if (PlotFrame.Content is PlotPage plotPage)
+                plotPage.ApplyLinkedTheme();
+        }
+
+        /// <summary>
+        /// 软件主题切换后同步日志显示区字体配色（页面尚未创建时为空操作）
+        /// </summary>
+        public void DataShowThemeSync()
+        {
+            if (dataShowFrame.Content is Pages.DataShowPage dataShowPage)
+                dataShowPage.RefreshLogColors();
         }
 
         private bool DoInvoke(Action action)

@@ -183,6 +183,12 @@
     <system:String x:Key="GraphFaultTrigger">Fault Trigger</system:String>
     <system:String x:Key="GraphEventTrigger">Event Trigger</system:String>
     <system:String x:Key="GraphScatterSample">Scatter Sample</system:String>
+    <system:String x:Key="Theme_Select">Theme</system:String>
+    <system:String x:Key="Theme_Default">Light</system:String>
+    <system:String x:Key="Theme_Dark">Dark</system:String>
+    <system:String x:Key="Theme_Violet">Violet</system:String>
+    <system:String x:Key="SendDataTextBoxPlaceholder">Enter the data to send...</system:String>
+    <system:String x:Key="RunOneLineLuaPlaceholder">Enter a Lua expression</system:String>
 </ResourceDictionary>
 
  

@@ -182,4 +182,10 @@
     <system:String x:Key="GraphFaultTrigger">故障触发</system:String>
     <system:String x:Key="GraphEventTrigger">事件触发</system:String>
     <system:String x:Key="GraphScatterSample">离散采样</system:String>
+    <system:String x:Key="Theme_Select">界面主题</system:String>
+    <system:String x:Key="Theme_Default">浅色主题</system:String>
+    <system:String x:Key="Theme_Dark">深色主题</system:String>
+    <system:String x:Key="Theme_Violet">紫色主题</system:String>
+    <system:String x:Key="SendDataTextBoxPlaceholder">输入要发送的数据…</system:String>
+    <system:String x:Key="RunOneLineLuaPlaceholder">输入Lua表达式，回车执行</system:String>
 </ResourceDictionary>

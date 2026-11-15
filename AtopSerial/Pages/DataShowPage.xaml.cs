@@ -47,17 +47,87 @@ namespace AtopSerial.Pages
         public bool newEmptyLine = false;
         public bool LockLog { get; set; } = false;
         SimpleLineEffectRecorder lineEffectsRecorder = new SimpleLineEffectRecorder();
+
+        #region 日志文本主题配色（浅色维持原方案，深色使用高亮变体）
+
+        /// <summary>
+        /// (浅色, 深色) 画刷对：标题、发送字符、接收字符、发送HEX、接收HEX
+        /// </summary>
+        private static readonly (SolidColorBrush light, SolidColorBrush dark)[] LogBrushPairs =
+        {
+            (System.Windows.Media.Brushes.DarkSlateGray, MakeLogBrush(0xB0, 0xBE, 0xC5)), // 标题/时间戳
+            (System.Windows.Media.Brushes.DarkRed,       MakeLogBrush(0xFF, 0x8A, 0x80)), // 发送 字符
+            (System.Windows.Media.Brushes.DarkGreen,     MakeLogBrush(0x81, 0xC7, 0x84)), // 接收 字符
+            (System.Windows.Media.Brushes.IndianRed,     MakeLogBrush(0xFF, 0x9E, 0x80)), // 发送 HEX
+            (System.Windows.Media.Brushes.ForestGreen,   MakeLogBrush(0xA5, 0xD6, 0xA7)), // 接收 HEX
+        };
+
+        private static SolidColorBrush MakeLogBrush(byte r, byte g, byte b)
+        {
+            var brush = new SolidColorBrush(System.Windows.Media.Color.FromRgb(r, g, b));
+            brush.Freeze();
+            return brush;
+        }
+
+        private static bool IsDarkLogTheme =>
+            Tools.ThemeManager.Normalize(Tools.Global.setting.theme) == Tools.ThemeManager.DarkTheme;
+
+        private static SolidColorBrush PickLogBrush(int index) =>
+            IsDarkLogTheme ? LogBrushPairs[index].dark : LogBrushPairs[index].light;
+
+        private static SolidColorBrush LogHeadBrush => PickLogBrush(0);
+        private static SolidColorBrush LogCharBrush(bool send) => PickLogBrush(send ? 1 : 2);
+        private static SolidColorBrush LogHexBrush(bool send) => PickLogBrush(send ? 3 : 4);
+
+        /// <summary>
+        /// 把已记录的画刷按映射表换算到目标主题，未匹配的（用户脚本自定义色等）原样保留
+        /// </summary>
+        private static System.Windows.Media.Brush MapLogBrush(System.Windows.Media.Brush brush, bool dark)
+        {
+            if (brush == null)
+                return null;
+            foreach (var pair in LogBrushPairs)
+            {
+                if (ReferenceEquals(brush, pair.light) || ReferenceEquals(brush, pair.dark))
+                    return dark ? pair.dark : pair.light;
+            }
+            return brush;
+        }
+
+        /// <summary>
+        /// 主题切换后重刷日志显示区配色：换算已显示行的画刷并重绘
+        /// </summary>
+        public void RefreshLogColors()
+        {
+            bool dark = IsDarkLogTheme;
+            var effects = lineEffectsRecorder.lineEffect;
+            for (int i = 0; i < effects.Length; i++)
+            {
+                effects[i].HeadColour = MapLogBrush(effects[i].HeadColour, dark);
+                effects[i].ResColour = MapLogBrush(effects[i].ResColour, dark);
+            }
+            uartDataText.TextArea.TextView.Redraw();
+        }
+
+        #endregion
+        /// <summary>
+        /// 一次性初始化标记：Loaded 会在主题切换（OnApplyTemplate 重建窗口模板）时再次触发
+        /// </summary>
+        private bool pageInitialized = false;
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //添加待显示数据到缓冲区
+            //注意：Loaded 可能重复触发（如主题切换），事件必须先退订再订阅，避免重复处理
+            Tools.Logger.DataShowTask -= DataShowTask;
             Tools.Logger.DataShowTask += DataShowTask;
-            Tools.Logger.DataClearEvent += (xx,x) =>
-            {
-                LogCount = 0;
-                uartDataText.Document.Text = string.Empty;
-                uartDataText.ScrollToHome();
-                lineEffectsRecorder.Clear();
-            };
+            Tools.Logger.DataClearEvent -= OnDataClear;
+            Tools.Logger.DataClearEvent += OnDataClear;
+
+            if (pageInitialized)
+                return;
+            pageInitialized = true;
+
             LockIcon.DataContext = this;
             UnLockIcon.DataContext = this;
             SearchPanel.Install(uartDataText.TextArea);
@@ -76,6 +146,17 @@ namespace AtopSerial.Pages
             SubpackageShowCheckBox.DataContext = Tools.Global.setting;
             ShowSendCheckBox.DataContext = Tools.Global.setting;
             DisableLogCheckBox.DataContext = Tools.Global.setting;
+        }
+
+        /// <summary>
+        /// 清空日志显示（独立方法以便退订，防止重复订阅）
+        /// </summary>
+        private void OnDataClear(object sender, EventArgs e)
+        {
+            LogCount = 0;
+            uartDataText.Document.Text = string.Empty;
+            uartDataText.ScrollToHome();
+            lineEffectsRecorder.Clear();
         }
 
         /// <summary>
@@ -234,6 +315,10 @@ namespace AtopSerial.Pages
 
             Dispatcher.Invoke(() =>
             {
+                // 数据包为空或数据为空时直接丢弃，避免后续裸取 Length 抛 NRE
+                if (DataPack == null || DataPack.data == null)
+                    return;
+
                 if (LogCount >= Tools.Global.setting.maxLogAutoClear)
                 {
                     LogCount = 0;
@@ -265,8 +350,8 @@ namespace AtopSerial.Pages
                     return;
                 }
 
-                CharColor = DataPack.send ? System.Windows.Media.Brushes.DarkRed : System.Windows.Media.Brushes.DarkGreen;
-                HexColor = DataPack.send ? System.Windows.Media.Brushes.IndianRed : System.Windows.Media.Brushes.ForestGreen;
+                CharColor = LogCharBrush(DataPack.send);
+                HexColor = LogHexBrush(DataPack.send);
 
                 if (uartDataText.Document.TextLength == 0)
                     sendPre = DataPack.send;
@@ -279,12 +364,12 @@ namespace AtopSerial.Pages
                     if (Tools.Global.setting.showHexFormat == 2)
                     {
                         DataHex = Tools.Global.Byte2Hex(DataPack.data, " ", DataPack.data.Length);
-                        AppendText(DataHex, 14, 0, System.Windows.Media.Brushes.DarkSlateGray, HexColor);
+                        AppendText(DataHex, 14, 0, LogHeadBrush, HexColor);
                     }
                     else
                     {
                         DataChar = Tools.Global.Byte2Readable(DataPack.data, DataPack.data.Length);
-                        AppendText(DataChar, 14, 0, System.Windows.Media.Brushes.DarkSlateGray, CharColor);
+                        AppendText(DataChar, 14, 0, LogHeadBrush, CharColor);
                     }
                     newEmptyLine = true;
                 }
@@ -303,18 +388,18 @@ namespace AtopSerial.Pages
                     {
                         DataChar = Tools.Global.Byte2Readable(DataPack.data, DataPack.data.Length);
                         DataChar += ((DataChar[DataChar.Length - 1] == '\r') || (DataChar[DataChar.Length - 1] == '\n'))?"": Environment.NewLine;
-                        AppendText(DataTitle + DataChar, 14, (byte)DataTitle.Length, System.Windows.Media.Brushes.DarkSlateGray, CharColor);
+                        AppendText(DataTitle + DataChar, 14, (byte)DataTitle.Length, LogHeadBrush, CharColor);
 
                         if(Tools.Global.setting.showHexFormat == 0)
                         {
                             DataHex = "HEX " + Tools.Global.Byte2Hex(DataPack.data, " ", DataPack.data.Length) + Environment.NewLine + Environment.NewLine;
-                            AppendText(DataHex, 11, 0, System.Windows.Media.Brushes.DarkSlateGray, HexColor);
+                            AppendText(DataHex, 11, 0, LogHeadBrush, HexColor);
                         }
                     }
                     else if (Tools.Global.setting.showHexFormat != 1)
                     {
                         DataHex += Tools.Global.Byte2Hex(DataPack.data, " ", DataPack.data.Length) + Environment.NewLine;
-                        AppendText(DataTitle + DataHex, 14, (byte)DataTitle.Length, System.Windows.Media.Brushes.DarkSlateGray, HexColor);
+                        AppendText(DataTitle + DataHex, 14, (byte)DataTitle.Length, LogHeadBrush, HexColor);
                     }
 
                     //有不显示的情况

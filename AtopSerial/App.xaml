@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:hc="clr-namespace:HandyControl.Controls;assembly=HandyControl"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
     xmlns:local="clr-namespace:AtopSerial"
     StartupUri="View/MainWindow.xaml">
     <Application.Resources>
@@ -16,6 +17,25 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="IconFont">pack://application:,,,/AtopSerial;component/Resources/iconfont.ttf#iconfont</FontFamily>
+            <!--  AvalonEdit 编辑器全局样式：跟随 HandyControl 主题，与输入框观感统一  -->
+            <Style TargetType="{x:Type avalonEdit:TextEditor}">
+                <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+            </Style>
+            <Style TargetType="{x:Type StatusBar}">
+                <Setter Property="Background" Value="{DynamicResource RegionBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="BorderThickness" Value="0,1,0,0" />
+            </Style>
+            <Style TargetType="{x:Type StatusBarItem}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+            </Style>
+            <Style TargetType="{x:Type Separator}">
+                <Setter Property="Background" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource BorderBrush}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

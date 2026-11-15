@@ -90,6 +90,17 @@
                                 <ComboBoxItem Content="{DynamicResource Language_en-US}" />
                             </ComboBox>
                         </WrapPanel>
+
+                        <WrapPanel Margin="5">
+                            <TextBlock VerticalAlignment="Center" Text="{DynamicResource Theme_Select}" />
+                            <ComboBox
+                                x:Name="themeSelectionComboBox"
+                                SelectionChanged="themeSelectionComboBox_SelectionChanged">
+                                <ComboBoxItem Content="{DynamicResource Theme_Default}" />
+                                <ComboBoxItem Content="{DynamicResource Theme_Dark}" />
+                                <ComboBoxItem Content="{DynamicResource Theme_Violet}" />
+                            </ComboBox>
+                        </WrapPanel>
                         
                         <Grid Margin="5,5,10,5">
                             <Grid.ColumnDefinitions>
@@ -237,7 +248,7 @@
                             Click="NewScriptButton_Click"
                             ToolTip="{DynamicResource LuaNewScript}">
                             <Grid>
-                                <fa:FontAwesome Foreground="LightSkyBlue" Icon="File" />
+                                <fa:FontAwesome Foreground="LightSlateGray" Icon="File" />
                                 <fa:FontAwesome Icon="FileCodeOutline" />
                             </Grid>
                         </Button>
@@ -247,7 +258,7 @@
                             Padding="8,0,8,0"
                             Click="TestScriptButton_Click"
                             ToolTip="{DynamicResource SettingLuaTestScript}">
-                            <fa:FontAwesome Foreground="DarkGreen" Icon="Play" />
+                            <fa:FontAwesome Foreground="DeepSkyBlue" Icon="Play" />
                         </Button>
                         <Button
                             x:Name="openScriptFolderButton"
@@ -256,7 +267,7 @@
                             Click="OpenScriptFolderButton_Click"
                             ToolTip="{DynamicResource LuaOpenFolder}">
                             <Grid>
-                                <fa:FontAwesome Foreground="Yellow" Icon="FolderOpen" />
+                                <fa:FontAwesome Foreground="Goldenrod" Icon="FolderOpen" />
                                 <fa:FontAwesome Icon="FolderOutlinepenOutline" />
                             </Grid>
                         </Button>
@@ -266,7 +277,7 @@
                             Padding="8,0,8,0"
                                 Click="RefreshScriptListButtonSend_Click"
                                 ToolTip="{DynamicResource LuaRefreshList}">
-                            <fa:FontAwesome Foreground="Green" Icon="Refresh" />
+                            <fa:FontAwesome Foreground="LimeGreen" Icon="Refresh" />
                         </Button>
                         <Button
                             x:Name="apiDocumentButton"
@@ -274,7 +285,7 @@
                             Padding="8,0,8,0"
                             Click="ApiDocumentButton_Click"
                             ToolTip="{DynamicResource LuaApiReference}">
-                            <fa:FontAwesome Foreground="DarkSlateGray" Icon="Book" />
+                            <fa:FontAwesome Foreground="LightCoral" Icon="Book" />
                         </Button>
                         <Button
                                 x:Name="DeleteScriptButtonSend"
@@ -282,7 +293,7 @@
                             Padding="8,0,8,0"
                                 Click="DeleteScriptButtonSend_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                            <fa:FontAwesome Foreground="DarkCyan" Icon="trash"  FontSize="14"/>
+                            <fa:FontAwesome Foreground="MediumSeaGreen" Icon="trash"  FontSize="14"/>
                         </Button>
                     </WrapPanel>
                     <WrapPanel
@@ -384,7 +395,7 @@
                             Click="newScriptButtonRev_Click"
                             ToolTip="{DynamicResource LuaNewScript}">
                             <Grid>
-                                <fa:FontAwesome Foreground="LightSkyBlue" Icon="File" />
+                                <fa:FontAwesome Foreground="LightSlateGray" Icon="File" />
                                 <fa:FontAwesome Icon="FileCodeOutline" />
                             </Grid>
                         </Button>
@@ -394,7 +405,7 @@
                             Padding="8,0,8,0"
                             Click="testScriptButtonRev_Click"
                             ToolTip="{DynamicResource SettingLuaTestScript}">
-                            <fa:FontAwesome Foreground="DarkGreen" Icon="Play" />
+                            <fa:FontAwesome Foreground="DeepSkyBlue" Icon="Play" />
                         </Button>
                         <Button
                             x:Name="openScriptFolderButtonRev"
@@ -403,7 +414,7 @@
                             Click="openScriptFolderButtonRev_Click"
                             ToolTip="{DynamicResource LuaOpenFolder}">
                             <Grid>
-                                <fa:FontAwesome Foreground="Yellow" Icon="FolderOpen" />
+                                <fa:FontAwesome Foreground="Goldenrod" Icon="FolderOpen" />
                                 <fa:FontAwesome Icon="FolderOutlinepenOutline" />
                             </Grid>
                         </Button>
@@ -413,7 +424,7 @@
                                 Padding="8,0,8,0"
                                 Click="RefreshScriptListButtonRev_Click"
                                 ToolTip="{DynamicResource LuaRefreshList}">
-                            <fa:FontAwesome Foreground="Green" Icon="Refresh" />
+                            <fa:FontAwesome Foreground="LimeGreen" Icon="Refresh" />
                         </Button>
                         <Button
                             x:Name="apiDocumentButtonRev"
@@ -421,7 +432,7 @@
                             Padding="8,0,8,0"
                             Click="ApiDocumentButton_Click"
                             ToolTip="{DynamicResource LuaApiReference}">
-                            <fa:FontAwesome Foreground="DarkSlateGray" Icon="Book" />
+                            <fa:FontAwesome Foreground="LightCoral" Icon="Book" />
                         </Button>
                         <Button
                                 x:Name="DeleteScriptButtonRev"
@@ -429,7 +440,7 @@
                                 Padding="8,0,8,0"
                                 Click="DeleteScriptButtonRev_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                            <fa:FontAwesome Foreground="DarkCyan" Icon="trash"  FontSize="14"/>
+                            <fa:FontAwesome Foreground="MediumSeaGreen" Icon="trash"  FontSize="14"/>
                         </Button>
                     </WrapPanel>
                     <WrapPanel

@@ -292,6 +292,7 @@
     </Compile>
     <Compile Include="Tools\Global.cs" />
     <Compile Include="Tools\Logger.cs" />
+    <Compile Include="Tools\ThemeManager.cs" />
     <Page Include="languages\en-US.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -363,13 +364,12 @@
     <Resource Include="DefaultFiles\core_script\strings.lua" />
     <Resource Include="DefaultFiles\core_script\sys.lua" />
     <Resource Include="DefaultFiles\LICENSE" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\Hex Conversions.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\GPS NMEA.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\Add CR.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\Parsing Escape Char.lua" />
+    <Resource Include="DefaultFiles\user_script\user_script_send_convert\HexConversions.lua" />
+    <Resource Include="DefaultFiles\user_script\user_script_send_convert\AddCR.lua" />
+    <Resource Include="DefaultFiles\user_script\user_script_send_convert\ParsingEscapeChar.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_send_convert\default.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_recv_convert\default.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\Check Sum.lua" />
+    <Resource Include="DefaultFiles\user_script\user_script_send_convert\CheckSum.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\InputBoxDemo.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\LogPrint.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\PoltDemo.lua" />
@@ -378,17 +378,15 @@
     <Resource Include="DefaultFiles\user_script\user_script_run\QuickSend3Demo.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\ReceiveHandleDemo.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\TimerDemo.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_run\WIFI AT Command Test.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\example.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_recv_convert\CurvePlot1.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_recv_convert\CurvePlot2.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_recv_convert\CurvePlot3.lua" />
     <Resource Include="DefaultFiles\user_script\monitor_script\default.lua" />
     <Resource Include="DefaultFiles\user_script\graph_script\default.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_run\VoltronicPowerGraph.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\VoltronicPowerCRC.lua" />
+    <Resource Include="DefaultFiles\user_script\user_script_run\VoltronicGraph.lua" />
+    <Resource Include="DefaultFiles\user_script\user_script_send_convert\VoltronicCRC.lua" />
     <Resource Include="DefaultFiles\user_script\user_script_run\SimulateBMS.lua" />
-    <Resource Include="DefaultFiles\user_script\user_script_send_convert\ModbusCRC.lua" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>

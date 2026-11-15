@@ -46,8 +46,9 @@
                         Height="36"
                         Cursor="Arrow">
                         <Border
-                            Background="#FFFFFF"
-                            BorderBrush="#FFFFFF"
+                            Background="{DynamicResource RegionBrush}"
+                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderThickness="1"
                             CornerRadius="3"
                             Effect="{StaticResource PopupDropShadowEffect}" />
                         <Grid Margin="3,0,3,0" >
@@ -63,7 +64,8 @@
                                 Margin="3"
                                 Padding="4,0,95,0"
                                 AcceptsReturn="False"
-                                Background="#FFFFFF"
+                                Background="{DynamicResource SecondaryRegionBrush}"
+                                Foreground="{DynamicResource PrimaryTextBrush}"
                                 BorderThickness="1"
                                 Focusable="True"
                                 Style="{StaticResource BaseTextBox}"

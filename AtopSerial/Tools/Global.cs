@@ -281,8 +281,7 @@ namespace AtopSerial.Tools
                     CreateFile("DefaultFiles/user_script/user_script_run/QuickSend3Demo.lua", ProfilePath + "user_script/user_script_run/QuickSend3Demo.lua");
                     CreateFile("DefaultFiles/user_script/user_script_run/ReceiveHandleDemo.lua", ProfilePath + "user_script/user_script_run/ReceiveHandleDemo.lua");
                     CreateFile("DefaultFiles/user_script/user_script_run/TimerDemo.lua", ProfilePath + "user_script/user_script_run/TimerDemo.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_run/VoltronicPowerGraph.lua", ProfilePath + "user_script/user_script_run/VoltronicPowerGraph.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_run/WIFI AT Command Test.lua", ProfilePath + "user_script/user_script_run/WIFI AT Command Test.lua");
+                    CreateFile("DefaultFiles/user_script/user_script_run/VoltronicGraph.lua", ProfilePath + "user_script/user_script_run/VoltronicGraph.lua");
                     CreateFile("DefaultFiles/user_script/user_script_run/SimulateBMS.lua", ProfilePath + "user_script/user_script_run/SimulateBMS.lua");
                 }
 
@@ -295,14 +294,12 @@ namespace AtopSerial.Tools
                 if (!Directory.Exists(ProfilePath + "user_script/user_script_send_convert"))
                 {
                     Directory.CreateDirectory(ProfilePath + "user_script/user_script_send_convert");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/Check Sum.lua", ProfilePath + "user_script/user_script_send_convert/Check Sum.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/Hex Conversions.lua", ProfilePath + "user_script/user_script_send_convert/Hex Conversions.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/GPS NMEA.lua", ProfilePath + "user_script/user_script_send_convert/GPS NMEA.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/Add CR.lua", ProfilePath + "user_script/user_script_send_convert/Add CR.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/VoltronicPowerCRC.lua", ProfilePath + "user_script/user_script_send_convert/VoltronicPowerCRC.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/Parsing Escape Char.lua", ProfilePath + "user_script/user_script_send_convert/Parsing Escape Char.lua");
+                    CreateFile("DefaultFiles/user_script/user_script_send_convert/CheckSum.lua", ProfilePath + "user_script/user_script_send_convert/CheckSum.lua");
+                    CreateFile("DefaultFiles/user_script/user_script_send_convert/HexConversions.lua", ProfilePath + "user_script/user_script_send_convert/HexConversions.lua");
+                    CreateFile("DefaultFiles/user_script/user_script_send_convert/AddCR.lua", ProfilePath + "user_script/user_script_send_convert/AddCR.lua");
+                    CreateFile("DefaultFiles/user_script/user_script_send_convert/VoltronicCRC.lua", ProfilePath + "user_script/user_script_send_convert/VoltronicCRC.lua");
+                    CreateFile("DefaultFiles/user_script/user_script_send_convert/ParsingEscapeChar.lua", ProfilePath + "user_script/user_script_send_convert/ParsingEscapeChar.lua");
                     CreateFile("DefaultFiles/user_script/user_script_send_convert/default.lua", ProfilePath + "user_script/user_script_send_convert/default.lua");
-                    CreateFile("DefaultFiles/user_script/user_script_send_convert/ModbusCRC.lua", ProfilePath + "user_script/user_script_send_convert/ModbusCRC.lua");
                 }
                 if (!Directory.Exists(ProfilePath + "user_script/user_script_recv_convert"))
                 {

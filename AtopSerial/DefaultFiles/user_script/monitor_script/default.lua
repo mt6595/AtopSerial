@@ -13,7 +13,7 @@ sys.taskInit(function ()
 			if monitorPara.sampleEn == "True" then
 				sampleNum = sampleNum + 1
 				while true do
-					apiSend("uart","TDTO="..string.format("%03d", (index-1)).."\r")
+					apiSend("uart","TDDW"..string.format("%03d", index).."\r")
 					revFlag,revData = sys.waitUntilExt("uartDataPush", 1000)
                     revData = revData or ""
                     if not revFlag or revData == "" then
