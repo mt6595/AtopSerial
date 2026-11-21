@@ -17,6 +17,24 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <FontFamily x:Key="IconFont">pack://application:,,,/AtopSerial;component/Resources/iconfont.ttf#iconfont</FontFamily>
+            <!--  图标画刷：默认值为深色主题用色（=原写死颜色），ThemeManager.Apply 按主题切换为浅色加深版  -->
+            <SolidColorBrush x:Key="IconColorBrush1" Color="#32CD32" />
+            <SolidColorBrush x:Key="IconColorBrush2" Color="#48D1CC" />
+            <SolidColorBrush x:Key="IconColorBrush3" Color="#FF4500" />
+            <SolidColorBrush x:Key="IconColorBrush4" Color="#303030" />
+            <SolidColorBrush x:Key="IconColorBrush5" Color="#11AFDF" />
+            <SolidColorBrush x:Key="IconColorBrush6" Color="#DA9520" />
+            <SolidColorBrush x:Key="IconColorBrush7" Color="#D57070" />
+            <SolidColorBrush x:Key="IconColorBrush8" Color="#3CB371" />
+            <SolidColorBrush x:Key="IconColorBrush9" Color="#008000" />
+            <SolidColorBrush x:Key="IconColorBrush10" Color="#FF0000" />
+            <SolidColorBrush x:Key="IconColorBrush11" Color="#CC0000" />
+            <SolidColorBrush x:Key="IconColorBrush12" Color="#55DD55" />
+            <SolidColorBrush x:Key="IconColorBrush13" Color="#CC8855" />
+            <SolidColorBrush x:Key="IconColorBrush14" Color="#00AAEE" />
+            <SolidColorBrush x:Key="IconColorBrush15" Color="#D0D0D0" />
+            <SolidColorBrush x:Key="IconColorBrush16" Color="#0D0D0D" />
+            <SolidColorBrush x:Key="IconColorBrush17" Color="#C0C0C0" />
             <!--  AvalonEdit 编辑器全局样式：跟随 HandyControl 主题，与输入框观感统一  -->
             <Style TargetType="{x:Type avalonEdit:TextEditor}">
                 <Setter Property="Background" Value="{DynamicResource RegionBrush}" />

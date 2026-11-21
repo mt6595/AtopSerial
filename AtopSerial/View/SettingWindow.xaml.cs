@@ -37,6 +37,15 @@ namespace AtopSerial
         private static string lastLuaFileSend = "";
         private static string lastLuaFileRev = "";
 
+        /// <summary>
+        /// 语言下拉框顺序对应的语言代码（必须与 SettingWindow.xaml 中 ComboBoxItem 顺序一致）
+        /// </summary>
+        private static readonly string[] LanguageCodes = new[]
+        {
+            "en-US", "zh-CN", "zh-TW", "ja-JP", "ko-KR", "de-DE", "fr-FR", "es-ES",
+            "pt-PT", "pt-BR", "it-IT", "ru-RU", "tr-TR", "vi-VN", "th-TH", "id-ID"
+        };
+
         public SettingWindow()
         {
             InitializeComponent();
@@ -64,10 +73,8 @@ namespace AtopSerial
             dataCheckComboBox.SelectedIndex = Tools.Global.setting.parity;
             plotStyleComboBox.SelectedIndex = Tools.Global.setting.plotStyle;
             plotRenderComboBox.SelectedIndex = Tools.Global.setting.plotRenderQuality;
-            if (Tools.Global.setting.language == "zh-CN")
-                languageSelectionComboBox.SelectedIndex = 0;
-            else
-                languageSelectionComboBox.SelectedIndex = 1;
+            int languageIndex = Array.IndexOf(LanguageCodes, Tools.Global.setting.language);
+            languageSelectionComboBox.SelectedIndex = languageIndex >= 0 ? languageIndex : 0;
 
             switch (Tools.ThemeManager.Normalize(Tools.Global.setting.theme))
             {
@@ -309,10 +316,9 @@ namespace AtopSerial
         {
             if (languageSelectionComboBox.SelectedItem != null)
             {
-                if(languageSelectionComboBox.SelectedIndex == 0)
-                    Tools.Global.setting.language = "zh-CN";
-                else
-                    Tools.Global.setting.language = "en-US";
+                int index = languageSelectionComboBox.SelectedIndex;
+                if (index >= 0 && index < LanguageCodes.Length)
+                    Tools.Global.setting.language = LanguageCodes[index];
             }
         }
 

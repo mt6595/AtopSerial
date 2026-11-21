@@ -285,7 +285,7 @@
 						                HorizontalAlignment="Center"
 						                Click="QuickAddSendListButton_Click"
 						                ToolTip="{DynamicResource QuickListAddButtonTip}">
-                                    <fa:FontAwesome Name="quickAddSendListIcon1"  Foreground="LimeGreen" Icon="plus" />
+                                    <fa:FontAwesome Name="quickAddSendListIcon1"  Foreground="{DynamicResource IconColorBrush1}" Icon="plus" />
                                 </Button>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="6" Padding="0">
@@ -296,7 +296,7 @@
 						                HorizontalAlignment="Center"
 						                Click="QuickDelSendListButton_Click"
 						                ToolTip="{DynamicResource QuickListDelLastButtonTip}">
-                                    <fa:FontAwesome Name="quickDelSendListIcon1"  Foreground="MediumTurquoise" Icon="minus" />
+                                    <fa:FontAwesome Name="quickDelSendListIcon1"  Foreground="{DynamicResource IconColorBrush2}" Icon="minus" />
                                 </Button>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="7" Padding="0">
@@ -307,7 +307,7 @@
 						                HorizontalAlignment="Center"
 						                Click="QuickRemoveAllListButton_Click"
 						                ToolTip="{DynamicResource QuickRemoveAllListButtonTip}" >
-                                    <fa:FontAwesome Name="quickRemoveAllListIcon1"  Foreground="OrangeRed" Icon="close" />
+                                    <fa:FontAwesome Name="quickRemoveAllListIcon1"  Foreground="{DynamicResource IconColorBrush3}" Icon="close" />
                                 </Button>
                             </StatusBarItem>
                         </StatusBar>
@@ -338,7 +338,7 @@
                                 Click="NewScriptButton_Click"
                                 ToolTip="{DynamicResource LuaNewScript}">
                                 <Grid>
-                                    <fa:FontAwesome Foreground="LightSlateGray" Icon="File" />
+                                    <fa:FontAwesome Foreground="{DynamicResource IconColorBrush4}" Icon="File" />
                                     <fa:FontAwesome Icon="FileCodeOutline" />
                                 </Grid>
                             </Button>
@@ -348,7 +348,7 @@
                                 Padding="8,0,8,0"
                                 Click="RunScriptButton_Click"
                                 ToolTip="{DynamicResource LuaRunScript}">
-                                <fa:FontAwesome Foreground="DeepSkyBlue" Icon="Play" />
+                                <fa:FontAwesome Foreground="{DynamicResource IconColorBrush5}" Icon="Play" />
                             </Button>
                             <Button
                                 Name="openScriptFolderButton"
@@ -357,7 +357,7 @@
                                 Click="OpenScriptFolderButton_Click"
                                 ToolTip="{DynamicResource LuaOpenFolder}">
                                 <Grid>
-                                    <fa:FontAwesome Foreground="Goldenrod" Icon="FolderOpen" />
+                                    <fa:FontAwesome Foreground="{DynamicResource IconColorBrush6}" Icon="FolderOpen" />
                                     <fa:FontAwesome Icon="FolderOutlinepenOutline" />
                                 </Grid>
                             </Button>
@@ -367,7 +367,7 @@
                                 Padding="8,0,8,0"
                                 Click="RefreshScriptListButton_Click"
                                 ToolTip="{DynamicResource LuaRefreshList}">
-                                <fa:FontAwesome Foreground="LimeGreen" Icon="Refresh" />
+                                <fa:FontAwesome Foreground="{DynamicResource IconColorBrush1}" Icon="Refresh" />
                             </Button>
                             <Button
                                 Name="apiDocumentButton"
@@ -375,7 +375,7 @@
                                 Padding="8,0,8,0"
                                 Click="ApiDocumentButton_Click"
                                 ToolTip="{DynamicResource LuaApiReference}">
-                                <fa:FontAwesome Foreground="LightCoral" Icon="Book" />
+                                <fa:FontAwesome Foreground="{DynamicResource IconColorBrush7}" Icon="Book" />
                             </Button>
                             <Button
                                 Name="scriptDeleteButton"
@@ -383,7 +383,7 @@
                                 Padding="8,0,8,0"
                                 Click="DeleteScriptButton_Click"
                                 ToolTip="{DynamicResource DeleteScript}">
-                                <fa:FontAwesome Foreground="MediumSeaGreen" Icon="trash" FontSize="14"/>
+                                <fa:FontAwesome Foreground="{DynamicResource IconColorBrush8}" Icon="trash" FontSize="14"/>
                             </Button>
                         </WrapPanel>
                         <WrapPanel
@@ -405,7 +405,7 @@
                                 VerticalAlignment="Center"
                                 Click="NewLuaFilebutton_Click"
                                 ToolTip="{DynamicResource LuaConfirmCreate}">
-                                <fa:FontAwesome Foreground="Green" Icon="Check" />
+                                <fa:FontAwesome Foreground="{DynamicResource IconColorBrush9}" Icon="Check" />
                             </Button>
                             <Button
                                 Name="newLuaFileCancelbutton"
@@ -414,7 +414,7 @@
                                 VerticalAlignment="Center"
                                 Click="NewLuaFileCancelbutton_Click"
                                 ToolTip="{DynamicResource LuaCancel}">
-                                <fa:FontAwesome Foreground="Red" Icon="Ban" />
+                                <fa:FontAwesome Foreground="{DynamicResource IconColorBrush10}" Icon="Ban" />
                             </Button>
                         </WrapPanel>
                         <avalonEdit:TextEditor
@@ -460,7 +460,7 @@
                                 Name="stopLuaButton"
                                 Margin="5,0,3,0"
                                 Click="StopLuaButton_Click"
-                                Foreground="DarkRed"
+                                Foreground="{DynamicResource IconColorBrush11}"
                                 ToolTip="{DynamicResource LuaStop}">
                                 <fa:FontAwesome Name="stopLuaOrExitIcon" Icon="Stop" />
                             </Button>
@@ -469,7 +469,7 @@
                                 Grid.Column="1"
                                 Margin="0,0,3,0"
                                 Click="reRunLuaButton_Click"
-                                Foreground="ForestGreen"
+                                Foreground="{DynamicResource IconColorBrush12}"
                                 ToolTip="{DynamicResource LuaOverload}">
                                 <fa:FontAwesome Name="reRunLuaIcon" Icon="Refresh" />
                             </Button>
@@ -481,7 +481,7 @@
                                 ToolTip="{DynamicResource LuaClear}"
                                 FontFamily="{StaticResource IconFont}" 
                                 Content="&#xe693;" 
-                                Foreground="Peru" 
+                                Foreground="{DynamicResource IconColorBrush13}" 
                                 FontSize="14"/>
                             <hc:TextBox
                                 Name="runOneLineLuaTextBox"
@@ -497,7 +497,7 @@
                                 ToolTip="{DynamicResource LuaSendScript}"
                                 FontFamily="{StaticResource IconFont}" 
                                 Content="&#xe630;" 
-                                Foreground="DeepSkyBlue" 
+                                Foreground="{DynamicResource IconColorBrush5}" 
                                 FontSize="15"/>
                         </Grid>
                     </Grid>
@@ -627,7 +627,7 @@
                                             ToolTip="{DynamicResource MonitorListAddButton}">
                                             <fa:FontAwesome 
                                                 Name="monitorAddSendListIcon" 
-                                                Foreground="LimeGreen" 
+                                                Foreground="{DynamicResource IconColorBrush1}" 
                                                 Icon="plus"/>
                                         </Button>
 
@@ -640,7 +640,7 @@
                                             ToolTip="{DynamicResource MonitorListDelLastButton}">
                                             <fa:FontAwesome 
                                                 Name="monitorDelSendListIcon" 
-                                                Foreground="MediumTurquoise" 
+                                                Foreground="{DynamicResource IconColorBrush2}" 
                                                 Icon="minus"/>
                                         </Button>
 
@@ -653,7 +653,7 @@
                                             ToolTip="{DynamicResource MonitorRemoveAllListButton}">
                                             <fa:FontAwesome 
                                                 Name="monitorRemoveAllListIcon" 
-                                                Foreground="OrangeRed" 
+                                                Foreground="{DynamicResource IconColorBrush3}" 
                                                 Icon="close"/>
                                         </Button>
                                     </Grid>
@@ -745,7 +745,7 @@
                                     ToolTip="{DynamicResource DataMonitorLog}"
                                     FontFamily="{StaticResource IconFont}" 
                                     Content="&#xe62f;" 
-                                    Foreground="MediumTurquoise" 
+                                    Foreground="{DynamicResource IconColorBrush2}" 
                                     FontSize="13"/>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="2"  Padding="0">
@@ -757,7 +757,7 @@
                                     ToolTip="{DynamicResource DataMonitorScriptEdit}"
                                     FontFamily="{StaticResource IconFont}" 
                                     Content="&#xe60f;" 
-                                    Foreground="LimeGreen" 
+                                    Foreground="{DynamicResource IconColorBrush1}" 
                                     FontSize="13"/>
                             </StatusBarItem>
                             <StatusBarItem Grid.Column="3"  Padding="0">
@@ -768,7 +768,7 @@
                                     Click="dataMonitorOpenLogButton_Click"
                                     ToolTip="{DynamicResource DataMonitorOpenLog}">
                                     <Grid>
-                                        <fa:FontAwesome Name="dataMonitorOpenLogIcon"  Foreground="Goldenrod" Icon="FolderOpen" />
+                                        <fa:FontAwesome Name="dataMonitorOpenLogIcon"  Foreground="{DynamicResource IconColorBrush6}" Icon="FolderOpen" />
                                         <fa:FontAwesome Icon="FolderOutlinepenOutline" />
                                     </Grid>
                                 </Button>
@@ -782,7 +782,7 @@
                                     ToolTip="{DynamicResource DataMonitorSelectShow}">
                                     <fa:FontAwesome 
                                         Name="dataMonitorSelectShowIcon"   
-                                        Foreground="DeepSkyBlue" 
+                                        Foreground="{DynamicResource IconColorBrush5}" 
                                         Icon="{Binding selectShowSw,Converter={StaticResource DataMonitorSelectShowConverter}}" />
                                 </Button>
                             </StatusBarItem>
@@ -795,7 +795,7 @@
                                     ToolTip="{DynamicResource DataMonitorAllSelect}">
                                     <fa:FontAwesome 
                                         Name="dataMonitorAllSelectIcon" 
-                                        Foreground="DarkGray" 
+                                        Foreground="{DynamicResource IconColorBrush15}" 
                                         Icon="{Binding allSelectSw,Converter={StaticResource DataMonitorAllSelectConverter}}"/>
                                 </Button>
                             </StatusBarItem>
@@ -1073,7 +1073,7 @@
                             Click="graphLogButton_Click"
                             FontFamily="{StaticResource IconFont}" 
                             Content="&#xe62f;" 
-                            Foreground="MediumTurquoise" 
+                            Foreground="{DynamicResource IconColorBrush2}" 
                             FontSize="13"/>
                         <Button
                             Name="GraphScriptEditButto1n"
@@ -1084,7 +1084,7 @@
                             Click="graphEditScriptButton_Click"
                             FontFamily="{StaticResource IconFont}" 
                             Content="&#xe60f;" 
-                            Foreground="LimeGreen" 
+                            Foreground="{DynamicResource IconColorBrush1}" 
                             FontSize="13"/>
                     </Grid>
                 </Grid>
@@ -1109,7 +1109,7 @@
                 VerticalAlignment="Top"
                 FontFamily="{StaticResource IconFont}" 
                 Content="{Binding graphSw, Converter={StaticResource GraphSwIconConverter}}"
-                Foreground="CornflowerBlue" 
+                Foreground="{DynamicResource IconColorBrush14}" 
                 FontSize="21">
 
                 <Button.Template>
@@ -1230,7 +1230,7 @@
                 ToolTip="{DynamicResource SendDataButtonTip}">
 
                 <fa:FontAwesome 
-                        Foreground="CornflowerBlue" 
+                        Foreground="{DynamicResource IconColorBrush14}" 
                         Icon="paperplane">
                     <fa:FontAwesome.Style>
                         <Style TargetType="fa:FontAwesome">

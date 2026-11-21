@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Interop;
@@ -18,6 +19,47 @@ namespace AtopSerial.Tools
         public const string DefaultTheme = "Default";
         public const string DarkTheme = "Dark";
         public const string VioletTheme = "Violet";
+
+        /// <summary>
+        /// 图标双套色板：dark = 深色主题用色（=原写死颜色），light = 浅色/紫色主题加深版。
+        /// 键名对应 App.xaml 里的 SolidColorBrush 资源键。
+        /// </summary>
+        private static readonly Dictionary<string, (Color dark, Color light)> IconBrushPalettes =
+            new Dictionary<string, (Color dark, Color light)>
+        {
+            ["IconColorBrush1"]     = (Color.FromRgb(0x32, 0xCD, 0x32), Color.FromRgb(0x1E, 0x9E, 0x1E)),
+            ["IconColorBrush2"]     = (Color.FromRgb(0x48, 0xD1, 0xCC), Color.FromRgb(0x21, 0x93, 0x8E)),
+            ["IconColorBrush3"]     = (Color.FromRgb(0xFF, 0x45, 0x00), Color.FromRgb(0xD0, 0x38, 0x00)),
+            ["IconColorBrush4"]     = (Color.FromRgb(0x30, 0x30, 0x30), Color.FromRgb(0x6B, 0x7B, 0x8B)),
+            ["IconColorBrush5"]     = (Color.FromRgb(0x11, 0xAF, 0xDF), Color.FromRgb(0x00, 0x60, 0xA8)),
+            ["IconColorBrush6"]     = (Color.FromRgb(0xDA, 0x95, 0x20), Color.FromRgb(0xDA, 0x95, 0x20)),
+            ["IconColorBrush7"]     = (Color.FromRgb(0xD5, 0x70, 0x70), Color.FromRgb(0xC0, 0x50, 0x50)),
+            ["IconColorBrush8"]     = (Color.FromRgb(0x3C, 0xB3, 0x71), Color.FromRgb(0x2E, 0x8B, 0x57)),
+            ["IconColorBrush9"]     = (Color.FromRgb(0x00, 0x80, 0x00), Color.FromRgb(0x00, 0x60, 0x00)),
+            ["IconColorBrush10"]    = (Color.FromRgb(0xFF, 0x00, 0x00), Color.FromRgb(0xC0, 0x00, 0x00)),
+            ["IconColorBrush11"]    = (Color.FromRgb(0xCC, 0x00, 0x00), Color.FromRgb(0x70, 0x00, 0x00)),
+            ["IconColorBrush12"]    = (Color.FromRgb(0x55, 0xDD, 0x55), Color.FromRgb(0x1A, 0x6B, 0x1A)),
+            ["IconColorBrush13"]    = (Color.FromRgb(0xCC, 0x88, 0x55), Color.FromRgb(0xA0, 0x64, 0x28)),
+            ["IconColorBrush14"]    = (Color.FromRgb(0x00, 0xAA, 0xEE), Color.FromRgb(0x55, 0x66, 0xDD)),
+            ["IconColorBrush15"]    = (Color.FromRgb(0xD0, 0xD0, 0xD0), Color.FromRgb(0x60, 0x60, 0x60)),
+            ["IconColorBrush16"]    = (Color.FromRgb(0x0D, 0x0D, 0x0D), Color.FromRgb(0x4E, 0x87, 0xA0)),
+            ["IconColorBrush17"]    = (Color.FromRgb(0xC0, 0xC0, 0xC0), Color.FromRgb(0x00, 0x00, 0x00)),
+        };
+
+        /// <summary>
+        /// 按主题把图标画刷注入全局资源：深色用原色，浅色/紫色用加深版。
+        /// 每次替换为新画刷实例，依赖 DynamicResource 的重解析生效。
+        /// </summary>
+        private static void ApplyIconBrushes(Application app, string themeName)
+        {
+            bool dark = Normalize(themeName) == DarkTheme;
+            foreach (var pair in IconBrushPalettes)
+            {
+                var brush = new SolidColorBrush(dark ? pair.Value.dark : pair.Value.light);
+                brush.Freeze();
+                app.Resources[pair.Key] = brush;
+            }
+        }
 
         public static void Apply(string themeName)
         {
@@ -66,6 +108,7 @@ namespace AtopSerial.Tools
             }
 
             ApplyWindowChromeTheme(themeName);
+            ApplyIconBrushes(app, themeName);
             ApplyPlotTheme();
         }
 
